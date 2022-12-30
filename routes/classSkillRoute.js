@@ -1,0 +1,11 @@
+const express = require('express');
+const router = express.Router();
+const ClassSkillController= require('../controllers/classSkillController');
+router.get('/',ClassSkillController.showClassSkillList);
+router.get('/add',ClassSkillController.showAddClassSkillForm);
+router.get('/edit/:ID_Klasy_Umiejetnosci',ClassSkillController.showEditClassSkillForm);
+router.get('/details/:ID_Klasy_Umiejetnosci',ClassSkillController.showClassSkillDetails);
+router.post('/add',ClassSkillController.addClassSkill);
+router.post('/edit', ClassSkillController.updateClassSkill);
+router.get('/delete/:ID_Klasy_Umiejetnosci',ClassSkillController.deleteClassSkill);
+module.exports = router;

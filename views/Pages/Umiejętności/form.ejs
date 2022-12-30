@@ -1,0 +1,82 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <script type="application/javascript" src="/js/validationSkillForm.js"></script>
+<h2><%= pageTitle %></h2>
+<form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
+    <input type="hidden" name="ID_Umiejetnosci" value="<%=skill.ID_Umiejetnosci%>">
+    <label for="nazwa">Nazwa: <span class="symbol-required">*</span></label>
+    <input type="text" name="Nazwa" id="nazwa" placeholder="2-30 znaków" required value="<%=skill.Nazwa%>"
+            <%=(formMode=='showDetails')?'disabled':'' %>/>
+    <span id="errornazwa" class="errors-text"></span>
+    <label for="lvl">Minimalny Poziom Postaci: </label>
+    <input type="number" name="MinimalnyPoziomPostaci" id="lvl" value="<%=skill.MinimalnyPoziomPostaci%>"
+            <%=(formMode=='showDetails')?'disabled':'' %>/>
+    <span id="errorlvl" class="errors-text"></span>
+    <label for="opis">Opis: <span class="symbol-required">*</span></label>
+    <textarea id="opis" name="Opis" cols="40" rows="5" placeholder="10-150 znaków" required
+    <%=(formMode=='showDetails')?'disabled':'' %>/> <%=skill.Opis%> </textarea>
+    <span id="erroropis" class="errors-text"></span>
+
+    <%if (formMode=='showDetails'){ %>
+    <div class="form-buttons">
+        <a href="/classes/edit/<%=skill.ID_Umiejetnosci%>" class="form-button-submit">Edytuj</a>
+    </div>
+    <% } %>
+    <%if (formMode=='showDetails'||formMode=='edit'){ %>
+    <div class="form-full">
+        <h2>
+            Szczegóły klas
+        </h2>
+        <table class="table-list">
+            <thead>
+            <tr>
+                <th>Klasa</th>
+                <th>Maksymalna Wartość</th>
+                <th>Bazowa Wartość</th>
+            </tr>
+            </thead>
+            <tbody>
+            <%for (let cs of skill.classSkills) { %>
+            <tr>
+                <td><a href="/classes/details/<%=cs.clas.ID_Klasy%>"><%=cs.clas.Nazwa_Klasy%></a> </td>
+                <td><%=cs.Maksymaln_Wartosc%></td>
+                <td><%=cs.Bazowa_Wartosc%></td>
+            </tr>
+            <%}%>
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="form-full">
+        <p id="errorSummary" class="errors-text"></p>
+        <%if (formMode != 'showDetails'){ %>
+        <input  class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+        <a  class="form-button-cancel" href="/skills">Anuluj</a>
+        <% }else {%>
+            <a  class="form-button-cancel" href="/skills">Powrót</a>
+        <% }%>
+    </div>
+        <%} else {%>
+        <div class="form-buttons">
+
+                <p id="errorSummary" class="errors-text"></p>
+                <%if (formMode != 'showDetails'){ %>
+                <input  class="form-button-submit" href="/skills/edit" type="submit" value="<%=btnLabel%>" />
+                <a  class="form-button-cancel" href="/skills">Anuluj</a>
+                <% }else {%>
+                    <a  class="form-button-cancel" href="/skills">Powrót</a>
+                <% }%>
+        </div>
+            <%}%>
+
+
+</form>
+
+</main>
+<%- include('../../fragments/footer.ejs') %>
+
+

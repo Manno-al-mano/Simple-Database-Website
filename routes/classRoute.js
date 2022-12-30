@@ -1,0 +1,11 @@
+const express = require('express');
+const router = express.Router();
+const classController= require('../controllers/classController');
+router.get('/',classController.showClassList);
+router.get('/add',classController.showAddClassForm);
+router.get('/edit/:ID_Klasy',classController.showEditClassForm);
+router.get('/details/:ID_Klasy',classController.showClassDetails);
+router.post('/add',classController.addClass);
+router.post('/edit', classController.updateClass);
+router.get('/delete/:ID_Klasy',classController.deleteClass);
+module.exports = router;

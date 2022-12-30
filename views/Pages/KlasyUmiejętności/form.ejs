@@ -1,0 +1,65 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <script type="application/javascript" src="/js/validationSkillClassForm.js"></script>
+    <h2><%= pageTitle %></h2>
+    <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
+
+    <input type="hidden" name="ID_Klasy_Umiejetnosci" value="<%=classSkills.ID_Klasy_Umiejetnosci%>">
+
+    <label for="klasa">Nazwa Klasy: <span class="symbol-required">*</span></label>
+
+    <select name="clas" id="klasa" required <%=(formMode=='showDetails')?'disabled':'' %>>
+        <option value="" selected>--Wybierz klasę--</option>
+        <% for (let i=0;i<allClasses.length;i++ ){let clas = allClasses[i]; %>
+        <option value="<%=clas.ID_Klasy%>" label="<%=clas.Nazwa_Klasy%>"
+                <%= (classSkills.ID_Klasy_Umiejetnosci&&clas.ID_Klasy.toString()==classSkills.clas.ID_Klasy.toString())? 'selected':''%>>
+        </option>
+        <%}%>
+
+    </select>
+    <span id="errorklasa" class="errors-text"></span>
+
+    <label for="skill">Nazwa Umiejętności: <span class="symbol-required">*</span></label>
+
+    <select name="skill" id="skill" required <%=(formMode=='showDetails')?'disabled':'' %>>
+        <option value="" selected>--Wybierz umiejętność--</option>
+        <% for (let i=0;i<allSkills.length;i++ ){let skill = allSkills[i]; %>
+        <option value="<%=skill.ID_Umiejetnosci%>" label="<%=skill.Nazwa%>"
+                <%= (classSkills.ID_Klasy_Umiejetnosci&&skill.ID_Umiejetnosci.toString()==classSkills.skill.ID_Umiejetnosci.toString())? 'selected':''%>>
+        </option>
+        <%}%>
+
+    </select>
+    <span id="errorskill" class="errors-text"></span>
+
+    <label for="maxlvl">Maksymalny Poziom: <span class="symbol-required">*</span></label>
+    <input type="number" name="Maksymaln_Wartosc" id="maxlvl" required placeholder="5-100" value="<%=classSkills.Maksymaln_Wartosc%>"
+            <%=(formMode=='showDetails')?'disabled':'' %>/>
+    <span id="maxlvlerror" class="errors-text"></span>
+    <label for="minlvl">bazowy Poziom: <span class="symbol-required">*</span></label>
+    <input type="number" name="Bazowa_Wartosc" id="minlvl" required placeholder="0-100" value="<%=classSkills.Bazowa_Wartosc%>"
+            <%=(formMode=='showDetails')?'disabled':'' %>/>
+    <span id="minlvlerror"  class="errors-text"></span>
+
+
+
+
+    <div class="form-buttons">
+        <p id="errorSummary" class="errors-text"></p>
+        <%if (formMode != 'showDetails'){ %>
+        <input  class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+        <a  class="form-button-cancel" href="/classSkills">Anuluj</a>
+        <% }else {%>
+        <a href="/classSkills/edit/<%=classSkills.ID_Klasy_Umiejetnosci%>" class="form-button-submit">Edytuj</a>
+            <a  class="form-button-cancel" href="/classSkills">Powrót</a>
+    </div>
+    <% }%>
+
+
+</form>
+
+</main>
+<%- include('../../fragments/footer.ejs') %>
+
+

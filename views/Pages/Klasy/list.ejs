@@ -1,0 +1,38 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2>Lista Klas</h2>
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th>Nazwa Klasy</th>
+                    <th>Maksymalny Poziom</th>
+                    <th>Data Utworzenia</th>
+                    <th>Akcje</th>
+                </tr>
+            </thead>
+            <tbody>
+            <% for (let clasunit of clas) { %>
+                <tr>
+                <td><%=clasunit.Nazwa_Klasy%></td>
+                <td><%=clasunit.Maksymalny_Poziom%></td>
+                <td><%=clasunit.Data_Utworzenia.toISOString().split('T')[0]%></td>
+                <td>
+                    <ul class="list-actions">
+                        <li>
+                            <a href="/classes/details/<%=clasunit.ID_Klasy%>" class="list-actions-button-details">Szczegóły</a>
+                        </li>
+                        <li>
+                            <a href="/classes/edit/<%=clasunit.ID_Klasy%>" class="list-actions-button-edit">Edytuj</a>
+                        </li>
+                        <li>
+                            <a href="/classes/delete/<%=clasunit.ID_Klasy%>" class="list-actions-button-delete">Usuń</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <%}%>
+            </tbody>
+        </table>
+        <p><a href="/classes/add" class="button-add">Dodaj nową klasę</a></p>
+    </main>
+<%- include('../../fragments/footer.ejs') %>
