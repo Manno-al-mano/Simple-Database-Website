@@ -37,7 +37,7 @@ exports.createClassSkill = (data) => {
     console.log(JSON.stringify(data));
 
     return ClassSkill.create({
-        ID_Klasy_Umiejetnosci: data.ID_Klasy_Umiejetnosci,
+        //ID_Klasy_Umiejetnosci: data.ID_Klasy_Umiejetnosci,
         Klasy_ID_Klasy: data.Klasy_ID_Klasy,
         Umiejetnosci_ID_Umiejetnosci: data.Umiejetnosci_ID_Umiejetnosci,
         Maksymaln_Wartosc: data.Maksymaln_Wartosc,
@@ -46,7 +46,8 @@ exports.createClassSkill = (data) => {
     });
 };
 exports.updateClassSkill = (classSkillId, data) => {
-
+    console.log(classSkillId);
+    console.log(JSON.stringify(data));
     return ClassSkill.update(data, {where: {ID_Klasy_Umiejetnosci: classSkillId}});
 }
 exports.deleteClassSkill = (id) => {

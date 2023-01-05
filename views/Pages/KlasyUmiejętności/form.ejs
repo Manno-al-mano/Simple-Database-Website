@@ -9,7 +9,7 @@
 
     <label for="klasa">Nazwa Klasy: <span class="symbol-required">*</span></label>
 
-    <select name="clas" id="klasa" required <%=(formMode=='showDetails')?'disabled':'' %>>
+    <select name="Klasy_ID_Klasy" id="klasa" required <%=(formMode=='showDetails')?'disabled':'' %>>
         <option value="" selected>--Wybierz klasę--</option>
         <% for (let i=0;i<allClasses.length;i++ ){let clas = allClasses[i]; %>
         <option value="<%=clas.ID_Klasy%>" label="<%=clas.Nazwa_Klasy%>"
@@ -22,11 +22,11 @@
 
     <label for="skill">Nazwa Umiejętności: <span class="symbol-required">*</span></label>
 
-    <select name="skill" id="skill" required <%=(formMode=='showDetails')?'disabled':'' %>>
+    <select name="Umiejetnosci_ID_Umiejetnosci" id="skill" required <%=(formMode=='showDetails')?'disabled':'' %>>
         <option value="" selected>--Wybierz umiejętność--</option>
         <% for (let i=0;i<allSkills.length;i++ ){let skill = allSkills[i]; %>
-        <option value="<%=skill.ID_Umiejetnosci%>" label="<%=skill.Nazwa%>"
-                <%= (classSkills.ID_Klasy_Umiejetnosci&&skill.ID_Umiejetnosci.toString()==classSkills.skill.ID_Umiejetnosci.toString())? 'selected':''%>>
+        <option value="<%=skill.ID_Umiejetnosci %>" label="<%=skill.Nazwa%>"
+                <%= (classSkills.ID_Klasy_Umiejetnosci && skill.ID_Umiejetnosci.toString()==classSkills.skill.ID_Umiejetnosci.toString())? 'selected':''%>>
         </option>
         <%}%>
 

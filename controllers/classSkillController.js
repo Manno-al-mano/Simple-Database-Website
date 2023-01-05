@@ -122,15 +122,18 @@ exports.showClassSkillDetails = (req,res,next) => {
         });
 }*/
 exports.addClassSkill = (req,res,next) => {
-    const classSkillslData = {...req.body};
-ClassSkillRepository.createClassSkill(classSkillslData)
+    const classSkillData = {...req.body};
+ClassSkillRepository.createClassSkill(classSkillData)
         .then(result =>{
             res.redirect('/classSkills');
         });
 }
 exports.updateClassSkill = (req,res,next) => {
     const classSkillId = req.body.ID_Klasy_Umiejetnosci;
+    console.log(classSkillId);
+
     const classSkillData = {...req.body};
+    console.log(JSON.stringify(classSkillData));
     ClassSkillRepository.updateClassSkill(classSkillId, classSkillData)
         .then(result => {
             res.redirect('/classSkills');
