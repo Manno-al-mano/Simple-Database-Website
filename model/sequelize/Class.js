@@ -1,6 +1,16 @@
 const Sequelize = require ('sequelize');
 const  sequelize = require('../../config/sequelize/sequelize');
 
+
+const today = new Date(),
+    tomorrow = new Date(today);
+tomorrow.setDate(tomorrow.getDate() + 1);
+let month=''+(  tomorrow.getMonth()+1),
+    day=''+     tomorrow.getDate(),
+    year=       tomorrow.getFullYear();
+
+const tomorrowString = [year,month,day].join('-');
+
 const Class = sequelize.define('Class', {
         ID_Klasy: {
             type: Sequelize.INTEGER,
@@ -11,6 +21,7 @@ const Class = sequelize.define('Class', {
         Nazwa_Klasy: {
             type: Sequelize.STRING,
             allowNull: false,
+            unique: true,
             validate:{
                 notEmpty:{
                    msg: "Pole jest wymagane"
@@ -25,26 +36,37 @@ const Class = sequelize.define('Class', {
             type: Sequelize.INTEGER,
             allowNull: false,
             validate: {
-                notEmpty:{
+                notEmpty: {
                     msg: "Pole jest wymagane"
                 },
-                isNumeric:{
+                isNumeric: {
                     msg: "Pole musi być liczbą"
                 },
-                isInt:{
+                isInt: {
                     msg: "Pole musi być liczbą całkowitą"
                 },
                 min: {
                     args: 5,
-                    msg:"Pole musi być większe od 5"
+                    msg: "Pole musi być większe lub równe 5"
 
-}
+                },
+                max: {
+                    args: 100,
+                    msg: "Pole musi być mniejsze lub równe 100"
+                }
 
             }
         },
         Data_Utworzenia: {
             type: Sequelize.DATE,
-            allowNull: false
+            allowNull: false,
+            validate: {
+                isDate: {msg: "Pole powinno zawierać datę w formacie dd.mm.yyyy"},
+                isBefore: {
+                    args: tomorrowString,
+                    msg: "data nie może być przyszła"
+                }
+            }
         }
     });
 module.exports = Class;

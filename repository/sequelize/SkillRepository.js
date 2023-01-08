@@ -27,10 +27,14 @@ exports.createSkill = (newSkillData) => {
     });
 };
 exports.updateSkill = (skillId,skillData) => {
+
+
+
     const Nazwa = skillData.Nazwa;
     const MinimalnyPoziomPostaci = skillData.MinimalnyPoziomPostaci;
     const Opis = skillData.Opis;
-    return Skill.update(skillData, {where: {ID_Umiejetnosci: skillId}});
+
+    return Skill.update(skillData,{where: {ID_Umiejetnosci: skillId}});
 }
 exports.deleteSkill = (skillId) => {
     return Skill.destroy({

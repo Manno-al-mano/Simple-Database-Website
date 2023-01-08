@@ -4,23 +4,41 @@
     <script type="application/javascript" src="/js/validationSkillForm.js"></script>
 <h2><%= pageTitle %></h2>
 <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
+
     <input type="hidden" name="ID_Umiejetnosci" value="<%=skill.ID_Umiejetnosci%>">
+
     <label for="nazwa">Nazwa: <span class="symbol-required">*</span></label>
-    <input type="text" name="Nazwa" id="nazwa" placeholder="2-30 znaków" required value="<%=skill.Nazwa%>"
-            <%=(formMode=='showDetails')?'disabled':'' %>/>
-    <span id="errornazwa" class="errors-text"></span>
+    <input type="text"   name="Nazwa" id="nazwa" placeholder="2-30 znaków" required value="<%=skill.Nazwa%>" class="<%=validationErrors.find(e=>e.path.includes('Nazwa'))?'error-input':''%>"
+            <%=(formMode=='showDetails')?'disabled':'' %> />
+    <span id="errornazwa" class="errors-text">
+<%if(validationErrors.find(e=>e.path.includes('Nazwa'))) { %>
+        <%=validationErrors.find(e=>e.path.includes('Nazwa')).message%>
+        <% } %>
+    </span>
+
     <label for="lvl">Minimalny Poziom Postaci: </label>
-    <input type="number" name="MinimalnyPoziomPostaci" id="lvl" value="<%=skill.MinimalnyPoziomPostaci%>"
+    <input type="number" name="MinimalnyPoziomPostaci" id="lvl" value="<%=skill.MinimalnyPoziomPostaci%>" class="<%=validationErrors.find(e=>e.path.includes('MinimalnyPoziomPostaci'))?'error-input':''%>"
             <%=(formMode=='showDetails')?'disabled':'' %>/>
-    <span id="errorlvl" class="errors-text"></span>
+    <span id="errorlvl" class="errors-text">
+        <%if(validationErrors.find(e=>e.path.includes('MinimalnyPoziomPostaci'))) { %>
+        <%=validationErrors.find(e=>e.path.includes('MinimalnyPoziomPostaci')).message%>
+        <% } %>
+    </span>
+
     <label for="opis">Opis: <span class="symbol-required">*</span></label>
-    <textarea id="opis" name="Opis" cols="40" rows="5" placeholder="10-150 znaków" required
+    <textarea id="opis" name="Opis" cols="40" rows="5" placeholder="10-150 znaków" required class="<%=validationErrors.find(e=>e.path.includes('Opis'))?'error-input':''%>"
     <%=(formMode=='showDetails')?'disabled':'' %>/> <%=skill.Opis%> </textarea>
-    <span id="erroropis" class="errors-text"></span>
+    <span id="erroropis" class="errors-text">
+        <%if(validationErrors.find(e=>e.path.includes('Opis'))) { %>
+        <%=validationErrors.find(e=>e.path.includes('Opis')).message%>
+        <% } %>
+    </span>
+
+
 
     <%if (formMode=='showDetails'){ %>
     <div class="form-buttons">
-        <a href="/classes/edit/<%=skill.ID_Umiejetnosci%>" class="form-button-submit">Edytuj</a>
+        <a href="/skills/edit/<%=skill.ID_Umiejetnosci%>" class="form-button-submit">Edytuj</a>
     </div>
     <% } %>
     <%if (formMode=='showDetails'||formMode=='edit'){ %>

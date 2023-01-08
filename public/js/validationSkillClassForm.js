@@ -1,4 +1,4 @@
-function validateForm() {
+    function validateForm() {
     const sCclassInput = document.getElementById('klasa');
     const sCskillInput = document.getElementById('skill');
     const sCMinLvlInput = document.getElementById('minlvl');

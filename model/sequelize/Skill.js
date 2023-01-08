@@ -11,6 +11,7 @@ const Skill = sequelize.define('Skill', {
     Nazwa: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
         validate:{
             notEmpty:{
                 msg: "Pole jest wymagane"
@@ -23,7 +24,24 @@ const Skill = sequelize.define('Skill', {
     },
     MinimalnyPoziomPostaci: {
         type: Sequelize.INTEGER,
-        allowNull: true
+        allowNull: true,
+        validate:{
+           isNumeric:{
+                msg: "Pole musi być liczbą"
+            },
+            isInt:{
+                msg: "Pole musi być liczbą całkowitą"
+            },
+            min: {
+                args: 1,
+                msg:"Pole musi być conajmniej 1"
+
+            },
+            max:{
+                args:500,
+                msg:"Pole musi być maksymalnie 500"
+            }
+        }
     },
     Opis: {
         type: Sequelize.STRING,
@@ -33,7 +51,7 @@ const Skill = sequelize.define('Skill', {
                 msg: "Pole jest wymagane"
             },
             len: {
-                args:[2,30],
+                args:[10,150],
                 msg: "Pole powinno zawierać od 10 do 150 znaków"
             }
         }

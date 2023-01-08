@@ -30,7 +30,8 @@ exports.showAddClassSkillForm = (req,res,next) => {
                 pageTitle: 'Nowa Umiejętność Klasy',
                 btnLabel: 'Dodaj Umiejętność Klasy',
                 formAction: '/classSkills/add',
-                navLocation: 'classSkill'
+                navLocation: 'classSkill',
+                validationErrors:[]
                 });
         });
 }
@@ -48,7 +49,7 @@ exports.showEditClassSkillForm = (req,res,next) => {
             return ClassSkillRepository.getClassSkillsById(classSkillId);
         })
         .then(classSkills => {
-            console.log(classSkills.ID_Klasy_Umiejetnosci)
+            //console.log(JSON.stringify(classSkills));
             res.render('Pages/KlasyUmiejętności/form',
                 {
                     classSkills:classSkills,
@@ -58,7 +59,8 @@ exports.showEditClassSkillForm = (req,res,next) => {
                     pageTitle: 'Edycja Umiejętności klasy',
                     btnLabel: "Edytuj umiejętność klasy",
                     formAction: '/classSkills/edit',
-                    navLocation: 'classSkill'
+                    navLocation: 'classSkill',
+                    validationErrors:[]
                 });
         });
 };
@@ -76,7 +78,7 @@ exports.showClassSkillDetails = (req,res,next) => {
             return ClassSkillRepository.getClassSkillsById(classSkillId);
         })
         .then(classSkills => {
-            console.log(classSkills.ID_Klasy_Umiejetnosci)
+           // console.log(classSkills.ID_Klasy_Umiejetnosci)
             res.render('Pages/KlasyUmiejętności/form',
                 {
                     classSkills: classSkills,
@@ -85,7 +87,8 @@ exports.showClassSkillDetails = (req,res,next) => {
                     allSkills: allSkills,
                     pageTitle: 'Szczegóły umiejętności klasy',
                     formAction: '',
-                    navLocation: 'classSkill'
+                    navLocation: 'classSkill',
+                    validationErrors:[]
                 });
         });
 }
@@ -123,22 +126,74 @@ exports.showClassSkillDetails = (req,res,next) => {
 }*/
 exports.addClassSkill = (req,res,next) => {
     const classSkillData = {...req.body};
+    let allClasses,allSkills;
 ClassSkillRepository.createClassSkill(classSkillData)
         .then(result =>{
             res.redirect('/classSkills');
-        });
+        })
+    .catch(err => {
+        ClassRepository.getClasses()
+            .then(clas =>{
+                allClasses=clas;
+                return SkillRepository.getSkills();
+            })
+            .then(skill=>{
+                allSkills=skill;
+                console.log(JSON.stringify(classSkillData));
+                res.render('Pages/KlasyUmiejętności/form',
+                    {
+                        classSkills: classSkillData,
+                        formMode: 'createNew',
+                        allClasses: allClasses,
+                        allSkills: allSkills,
+                        pageTitle: 'Nowa Umiejętność Klasy',
+                        btnLabel: 'Dodaj Umiejętność Klasy',
+                        formAction: '/classSkills/add',
+                        navLocation: 'classSkill',
+                        validationErrors:err.errors
+                    });
+            })
+
+});
 }
 exports.updateClassSkill = (req,res,next) => {
     const classSkillId = req.body.ID_Klasy_Umiejetnosci;
-    console.log(classSkillId);
-
+    let allClasses,allSkills;
     const classSkillData = {...req.body};
-    console.log(JSON.stringify(classSkillData));
     ClassSkillRepository.updateClassSkill(classSkillId, classSkillData)
-        .then(result => {
+        .then(result =>{
             res.redirect('/classSkills');
-        });
-}
+        })
+        .catch(err => {
+            ClassRepository.getClasses()
+                .then(clas =>{
+                    allClasses=clas;
+                    return SkillRepository.getSkills();
+                })
+                .then(skill=> {
+                    allSkills = skill;
+                    return ClassSkillRepository.getClassSkillsById(classSkillId);
+                })
+                .then(classSkills => {
+                    console.log(JSON.stringify(classSkills));
+                    console.log(JSON.stringify(classSkillData));
+                    res.render('Pages/KlasyUmiejętności/form',
+                        {
+                            classSkills: classSkillData,
+                            formMode: 'edit',
+                            allClasses: allClasses,
+                            allSkills: allSkills,
+                            pageTitle: 'Edycja Umiejętności klasy',
+                            btnLabel: "Edytuj umiejętność klasy",
+                            formAction: '/classSkills/edit',
+                            navLocation: 'classSkill',
+                            validationErrors:err.errors
+                        });
+                });
+
+                })
+
+        }
 exports.deleteClassSkill = (req,res,next) => {
     const classSkillId = req.params.ID_Klasy_Umiejetnosci;
     ClassSkillRepository.deleteClassSkill(classSkillId)

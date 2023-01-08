@@ -19,7 +19,8 @@ exports.showAddClassForm = (req,res,next) => {
             formMode: 'createNew',
             btnLabel: "Dodaj klasę",
             formAction: '/classes/add',
-            navLocation: 'class'});
+            navLocation: 'class',
+            validationErrors:[]});
 }
 exports.showEditClassForm = (req,res,next) => {
     const classId = req.params.ID_Klasy;
@@ -34,7 +35,8 @@ exports.showEditClassForm = (req,res,next) => {
                     pageTitle: 'Edycja klasy',
                     btnLabel: "Edytuj klasę",
                     formAction: '/classes/edit',
-                    navLocation: 'class'
+                    navLocation: 'class',
+                    validationErrors:[]
                 });
         });
 };
@@ -49,15 +51,27 @@ exports.showClassDetails = (req,res,next) => {
                     formMode: 'showDetails',
                     pageTitle: 'Szczegóły klasy',
                     formAction: '',
-                    navLocation: 'class'
+                    navLocation: 'class',
+                    validationErrors:[]
                 });
         });
 }
 exports.addClass = (req,res,next) => {
     const classData = {...req.body};
     ClassRepository.createClass(classData)
-        .then(result =>{
-           res.redirect('/classes');
+        .then(result => {
+            res.redirect('/classes');
+        })
+        .catch(err => {
+            res.render('Pages/Klasy/form', {
+                clas: classData,
+                pageTitle: 'Nowa klasa',
+                formMode: 'createNew',
+                btnLabel: "Dodaj klasę",
+                formAction: '/classes/add',
+                navLocation: 'class',
+                validationErrors: err.errors
+            });
         });
 };
 exports.updateClass = (req,res,next) => {
@@ -66,6 +80,25 @@ const classId = req.body.ID_Klasy;
     ClassRepository.updateClass(classId ,classData)
         .then(result =>{
             res.redirect('/classes');
+        })
+        .catch(err => {
+
+            ClassRepository.getClassById(classId)
+                .then(clas=>{
+                    clas.Nazwa_Klasy= classData.Nazwa_Klasy;
+                    clas.Maksymalny_Poziom=classData.Maksymalny_Poziom;
+                    clas.Data_Utworzenia=classData.Data_Utworzenia;
+                    res.render('Pages/Klasy/form',
+                        {
+                            clas:clas,
+                            formMode: 'edit',
+                            pageTitle: 'Edycja klasy',
+                            btnLabel: "Edytuj klasę",
+                            formAction: '/classes/edit',
+                            navLocation: 'class',
+                            validationErrors:err.errors
+                        });
+                });
         });
 };
 exports.deleteClass = (req,res,next) => {

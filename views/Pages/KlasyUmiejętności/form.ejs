@@ -3,26 +3,31 @@
     <script type="application/javascript" src="/js/validationCommon.js"></script>
     <script type="application/javascript" src="/js/validationSkillClassForm.js"></script>
     <h2><%= pageTitle %></h2>
-    <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
-
+    <form class="form" method="post" action="<%= formAction %>" novalidate> <!--onsubmit="return validateForm();">-->
+        <%console.log("GGGGGGGGGGG")%>
+        <%console.log(classSkills.Klasy_ID_Klasy)%>
     <input type="hidden" name="ID_Klasy_Umiejetnosci" value="<%=classSkills.ID_Klasy_Umiejetnosci%>">
 
     <label for="klasa">Nazwa Klasy: <span class="symbol-required">*</span></label>
 
-    <select name="Klasy_ID_Klasy" id="klasa" required <%=(formMode=='showDetails')?'disabled':'' %>>
+    <select name="Klasy_ID_Klasy" id="klasa" class="<%=validationErrors.find(e=>e.path.includes('Klasy_ID_Klasy'))?'error-input':''%>" required <%=(formMode=='showDetails')?'disabled':'' %>>
         <option value="" selected>--Wybierz klasę--</option>
         <% for (let i=0;i<allClasses.length;i++ ){let clas = allClasses[i]; %>
         <option value="<%=clas.ID_Klasy%>" label="<%=clas.Nazwa_Klasy%>"
-                <%= (classSkills.ID_Klasy_Umiejetnosci&&clas.ID_Klasy.toString()==classSkills.clas.ID_Klasy.toString())? 'selected':''%>>
+                <%= (classSkills.ID_Klasy_Umiejetnosci&&clas.ID_Klasy.toString()==classSkills.Klasy_ID_Klasy.toString())? 'selected':''%>>
         </option>
         <%}%>
 
     </select>
-    <span id="errorklasa" class="errors-text"></span>
+    <span id="errorklasa" class="errors-text">
+        <%if(validationErrors.find(e=>e.path.includes('Klasy_ID_Klasy'))) { %>
+        <%=validationErrors.find(e=>e.path.includes('Klasy_ID_Klasy')).message%>
+        <% } %>
+    </span>
 
     <label for="skill">Nazwa Umiejętności: <span class="symbol-required">*</span></label>
 
-    <select name="Umiejetnosci_ID_Umiejetnosci" id="skill" required <%=(formMode=='showDetails')?'disabled':'' %>>
+    <select name="Umiejetnosci_ID_Umiejetnosci" id="skill" class="<%=validationErrors.find(e=>e.path.includes('Umiejetnosci_ID_Umiejetnosci'))?'error-input':''%>" required <%=(formMode=='showDetails')?'disabled':'' %>>
         <option value="" selected>--Wybierz umiejętność--</option>
         <% for (let i=0;i<allSkills.length;i++ ){let skill = allSkills[i]; %>
         <option value="<%=skill.ID_Umiejetnosci %>" label="<%=skill.Nazwa%>"
@@ -31,16 +36,29 @@
         <%}%>
 
     </select>
-    <span id="errorskill" class="errors-text"></span>
+    <span id="errorskill" class="errors-text">
+        <%if(validationErrors.find(e=>e.path.includes('Umiejetnosci_ID_Umiejetnosci'))) { %>
+        <%=validationErrors.find(e=>e.path.includes('Umiejetnosci_ID_Umiejetnosci')).message%>
+        <% } %>
+    </span>
 
     <label for="maxlvl">Maksymalny Poziom: <span class="symbol-required">*</span></label>
-    <input type="number" name="Maksymaln_Wartosc" id="maxlvl" required placeholder="5-100" value="<%=classSkills.Maksymaln_Wartosc%>"
+    <input type="number" name="Maksymaln_Wartosc" id="maxlvl" class="<%=validationErrors.find(e=>e.path.includes('Maksymaln_Wartosc'))?'error-input':''%>" required placeholder="5-100" value="<%=classSkills.Maksymaln_Wartosc%>"
             <%=(formMode=='showDetails')?'disabled':'' %>/>
-    <span id="maxlvlerror" class="errors-text"></span>
+    <span id="maxlvlerror" class="errors-text">
+        <%if(validationErrors.find(e=>e.path.includes('Maksymaln_Wartosc'))) { %>
+        <%=validationErrors.find(e=>e.path.includes('Maksymaln_Wartosc')).message%>
+        <% } %>
+    </span>
+
     <label for="minlvl">bazowy Poziom: <span class="symbol-required">*</span></label>
-    <input type="number" name="Bazowa_Wartosc" id="minlvl" required placeholder="0-100" value="<%=classSkills.Bazowa_Wartosc%>"
+    <input type="number" name="Bazowa_Wartosc" id="minlvl" class="<%=validationErrors.find(e=>e.path.includes('Bazowa_Wartosc'))?'error-input':''%>" required placeholder="0-100" value="<%=classSkills.Bazowa_Wartosc%>"
             <%=(formMode=='showDetails')?'disabled':'' %>/>
-    <span id="minlvlerror"  class="errors-text"></span>
+    <span id="minlvlerror"  class="errors-text">
+        <%if(validationErrors.find(e=>e.path.includes('Bazowa_Wartosc'))) { %>
+        <%=validationErrors.find(e=>e.path.includes('Bazowa_Wartosc')).message%>
+        <% } %>
+    </span>
 
 
 
