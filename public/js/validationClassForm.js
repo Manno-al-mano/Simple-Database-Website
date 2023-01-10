@@ -45,10 +45,13 @@ function validateForm() {
          clasErrorMaxLvl.innerText = "Pole powinno być w zakresie od 5 do 100";
      }
 //sprawdzam datę;
-let nowDate = new Date(),
-    month=''+(nowDate.getMonth()+1),
-    day=''+nowDate.getDate(),
-    year=nowDate.getFullYear();
+    const today = new Date(),
+        tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    let month=''+(  tomorrow.getMonth()+1),
+        day=''+     tomorrow.getDate(),
+        year=       tomorrow.getFullYear();
+
     if(month.length<2)
         month='0'+month;
 if(day.length<2)

@@ -3,9 +3,8 @@
     <script type="application/javascript" src="/js/validationCommon.js"></script>
     <script type="application/javascript" src="/js/validationSkillClassForm.js"></script>
     <h2><%= pageTitle %></h2>
-    <form class="form" method="post" action="<%= formAction %>" novalidate> <!--onsubmit="return validateForm();">-->
-        <%console.log("GGGGGGGGGGG")%>
-        <%console.log(classSkills.Klasy_ID_Klasy)%>
+    <form class="form" method="post" action="<%= formAction %>" novalidateonsubmit="return validateForm();">
+
     <input type="hidden" name="ID_Klasy_Umiejetnosci" value="<%=classSkills.ID_Klasy_Umiejetnosci%>">
 
     <label for="klasa">Nazwa Klasy: <span class="symbol-required">*</span></label>
@@ -13,8 +12,13 @@
     <select name="Klasy_ID_Klasy" id="klasa" class="<%=validationErrors.find(e=>e.path.includes('Klasy_ID_Klasy'))?'error-input':''%>" required <%=(formMode=='showDetails')?'disabled':'' %>>
         <option value="" selected>--Wybierz klasę--</option>
         <% for (let i=0;i<allClasses.length;i++ ){let clas = allClasses[i]; %>
+        <%console.log("GGGGGGGGGGG")%>
         <option value="<%=clas.ID_Klasy%>" label="<%=clas.Nazwa_Klasy%>"
+                <%if(formMode!='createNewError') {%>
                 <%= (classSkills.ID_Klasy_Umiejetnosci&&clas.ID_Klasy.toString()==classSkills.Klasy_ID_Klasy.toString())? 'selected':''%>>
+            <%} else {%>
+                <%= (clas.ID_Klasy.toString()==classSkills.Klasy_ID_Klasy.toString())? 'selected':''%>>
+            <%}%>
         </option>
         <%}%>
 
@@ -31,7 +35,11 @@
         <option value="" selected>--Wybierz umiejętność--</option>
         <% for (let i=0;i<allSkills.length;i++ ){let skill = allSkills[i]; %>
         <option value="<%=skill.ID_Umiejetnosci %>" label="<%=skill.Nazwa%>"
-                <%= (classSkills.ID_Klasy_Umiejetnosci && skill.ID_Umiejetnosci.toString()==classSkills.skill.ID_Umiejetnosci.toString())? 'selected':''%>>
+        <%if(formMode!='createNewError') {%>
+                <%= (classSkills.ID_Klasy_Umiejetnosci && skill.ID_Umiejetnosci.toString()==classSkills.Umiejetnosci_ID_Umiejetnosci.toString())? 'selected':''%>>
+            <%} else {%>
+                <%= (skill.ID_Umiejetnosci.toString()==classSkills.Umiejetnosci_ID_Umiejetnosci.toString())? 'selected':''%>>
+            <%}%>
         </option>
         <%}%>
 
