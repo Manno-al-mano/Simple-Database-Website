@@ -1,0 +1,128 @@
+{
+	"title": "Heroes of Heroism",
+	"footer": "Martin Piotrkowitz",
+	"main-page": {
+		"content": "Main Page",
+		"text": "Heroes of Heroism is a free MMORPG."
+	},
+	"nav": {
+		"main-page": "Main page",
+		"class": "Classes",
+		"skill": "Skills",
+		"classSkill": "Class Skills"
+	},
+	"list": {
+		"actions": {
+			"title": "Actions",
+			"details": "Details",
+			"edit": "Edit",
+			"delete": "Delete"
+		}
+	},
+	"form": {
+		"actions": {
+			"return": "Return",
+			"edit": "Edit",
+			"cancel": "Cancel"
+		}
+	},
+	"class": {
+		"fields": {
+			"Nazwa_Klasy": "Class Name",
+			"Maksymalny_Poziom": "Max Level",
+			"Data_Utworzenia": "Added on"
+		},
+		"list": {
+			"title": "Classes",
+			"addNew": "Add new class",
+			"noData": "No classes in database",
+			"pageTitle": "List of Classes"
+		},
+		"form": {
+			"skills": "History of Skills",
+			"add": {
+				"pageTitle": "Adding a new Class",
+				"btnLabel": "Add the Class",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new Class has been successfully created"
+				}
+			},
+			"edit": {
+				"pageTitle": "Editing a Class",
+				"btnLabel": "Save changes",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The Class has been successfully updated"
+				}
+			},
+			"detail": {
+				"pageTitle": "Class Details"
+			}
+		}
+	},
+	"skill": {
+		"fields": {
+			"Nazwa_Umi": "Skill Name",
+			"MinLvl": "Minimal Value",
+			"Desc": "Description"
+		},
+		"form": {
+			"detail": {
+				"pageTitle": "Skill Details"
+			},
+			"classes": "Classes history",
+			"edit": {
+				"pageTitle": "Edit skills",
+				"btnLabel": "Save changes"
+			},
+			"add": {
+				"pageTitle": "Adding a new skill",
+				"btnLabel": "Add skill"
+			}
+		},
+		"list": {
+			"pageTitle": "List of Skills",
+			"addNew": "Add new skill"
+		}
+	},
+	"validationMessage": {
+		"fieldRequired": "Field is Required",
+		"isNumber": "Field must be a Number",
+		"isInt": "Field must be an Integer",
+		"isDate": "Field must be a Date in format dd.mm.yyyy",
+		"isFuture": "Field can't be a future date",
+		"isInRange5to100": "Field must be a number between 5 and 100",
+		"isInRange0to100": "Field must be a number between 0 and 100",
+		"isInRange1to500": "Field must be a number between 1 and 500",
+		"isInCharRange2to30": "Field must have between 2 and 30 characters",
+		"isInCharRange10to150": "Field must have between 10 and 150 characters",
+		"isHigherThanMax": "Base Value can't be higher than max value",
+		"General": "Form contains errors"
+	},
+	"classSkill": {
+		"list": {
+			"pageTitle": "Class Skills",
+			"addNew": "Add New Class Skill"
+		},
+		"fields": {
+			"Nazwa_Klasy": "Class Name",
+			"Nazwa_Umi": "Skill Name",
+			"MaksWrt": "Max Value",
+			"BaseWrt": "Base Value"
+		},
+		"form": {
+			"add": {
+				"pageTitle": "Adding a new skill class",
+				"btnLabel": "Add the class Skill"
+			},
+			"detail": {
+				"pageTitle": "Class skill details"
+			},
+			"edit": {
+				"pageTitle": "Edit Class Skill",
+				"btnLabel": "Save changes"
+			}
+		}
+	}
+}

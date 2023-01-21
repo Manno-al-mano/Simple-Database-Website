@@ -1,0 +1,129 @@
+{
+	"title": "Bohaterowie Heroizmu",
+	"footer": "Marcin Piotrkowicz",
+	"main-page": {
+		"content": "Strona główna",
+		"text": "Bohaterowie Heroizmu to darmowa gra MMO-RPG."
+	},
+	"nav": {
+		"main-page": "Strona główna",
+		"class": "Klasy",
+		"skill": "Umiejętności",
+		"classSkill": "Klasy Umiejętności"
+	},
+	"list": {
+		"actions": {
+			"title": "Akcje",
+			"details": "Szczegóły",
+			"edit": "Edytuj",
+			"delete": "Usuń",
+			"back": "list.actions.back"
+		}
+	},
+	"form": {
+		"actions": {
+			"return": "Powrót",
+			"edit": "Edytuj",
+			"cancel": "Anuluj"
+		}
+	},
+	"class": {
+		"fields": {
+			"Nazwa_Klasy": "Nazwa Klasy",
+			"Maksymalny_Poziom": "Maksymalny Poziom",
+			"Data_Utworzenia": "Data Utworzenia"
+		},
+		"list": {
+			"title": "Klasy",
+			"addNew": "Dodaj nową Klasę",
+			"noData": "Brak Klas w bazie",
+			"pageTitle": "Lista Klas"
+		},
+		"form": {
+			"skills": "Historia Umiejętności",
+			"add": {
+				"pageTitle": "Dodawanie Klasy",
+				"btnLabel": "Dodaj Klasę",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie dodano Klasę"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edycja Klasy",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie zaktualizowano klasę"
+				}
+			},
+			"detail": {
+				"pageTitle": "Szczegóły Klasy"
+			}
+		}
+	},
+	"skill": {
+		"fields": {
+			"Nazwa_Umi": "Nazwa Umiejętności",
+			"MinLvl": "Minimalna Wartość",
+			"Desc": "Opis"
+		},
+		"list": {
+			"pageTitle": "Lista Umiejętności",
+			"addNew": "Dodaj nową Umiejętność"
+		},
+		"form": {
+			"classes":"Historia Klas",
+			"detail": {
+				"pageTitle": "Szczegóły Umiejętności"
+			},
+			"add": {
+				"pageTitle": "Dodawanie Umiejętności",
+				"btnLabel": "Dodaj Umiejętność"
+			},
+			"edit": {
+				"pageTitle": "Edycja Umięjętności",
+				"btnLabel": "Zapisz zmiany"
+			}
+		}
+	},
+	"validationMessage": {
+		"fieldRequired": "Pole jest wymagane",
+		"isNumber": "Pole powinno być liczbą",
+		"isInt": "Pole powinno być liczbą całkowitą",
+		"isDate": "Pole powinno zawierać datę w formacie dd.mm.yyyy",
+		"isFuture": "Pole powinno nie powinno zawierać przyszłej daty",
+		"isInRange5to100": "Pole powinno być w zakresie od 5 do 100",
+		"isInRange0to100": "validationMessage.isInRange0to100",
+		"isInRange1to500": "Pole powinno być w zakresie od 1 do 500",
+		"isInCharRange2to30": "Pole powinno zawierać od 2 do 30 znaków",
+		"isInCharRange10to150": "Pole powinno zawierać od 10 do 150 znaków",
+		"isHigherThanMax": "Pole nie może być większe od maksymalnego poziomu",
+		"General": "Formularz zawiera błędy"
+	},
+	"classSkill": {
+		"list": {
+			"pageTitle": "Klasy Umiejętności",
+			"addNew": "Dodaj Nową Klasę Umiejętności"
+		},
+		"form": {
+			"add": {
+				"pageTitle": "Dodawanie Klasy Umiejętności",
+				"btnLabel": "Potwierdzenie operacji"
+			},
+			"detail": {
+				"pageTitle": "Szczegóły Klasy Umiejętności"
+			},
+			"edit": {
+				"pageTitle": "Edycja Klasy Umiejętności",
+				"btnLabel": "Zapisz zmiany"
+			}
+		},
+		"fields": {
+			"Nazwa_Klasy": "Nazwa Klasy",
+			"Nazwa_Umi": "Nazwa Umiejętności",
+			"MaksWrt": "Maksymalna Wartość",
+			"BaseWrt": "Bazowa Wartość"
+		}
+	}
+}
