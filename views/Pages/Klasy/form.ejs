@@ -12,7 +12,7 @@
     <%=(formMode=='showDetails')?'disabled':'' %>/>
     <span id="errornazwa" class="errors-text" >
         <%if(validationErrors.find(e=>e.path.includes('Nazwa_Klasy'))) { %>
-        <%=validationErrors.find(e=>e.path.includes('Nazwa_Klasy')).message%>
+        <%=__(validationErrors.find(e=>e.path.includes('Nazwa_Klasy')).message)%>
         <% } %>
     </span>
 
@@ -21,7 +21,7 @@
             <%=(formMode=='showDetails')?'disabled':'' %>/>
     <span id="errorlvl" class="errors-text">
         <%if(validationErrors.find(e=>e.path.includes('Maksymalny_Poziom'))) { %>
-        <%=validationErrors.find(e=>e.path.includes('Maksymalny_Poziom')).message%>
+        <%=__(validationErrors.find(e=>e.path.includes('Maksymalny_Poziom')).message)%>
         <% } %>
     </span>
 
@@ -32,7 +32,7 @@
             <%=(formMode=='showDetails')?'disabled':'' %>/>
     <span id="errordate" class="errors-text">
         <%if(validationErrors.find(e=>e.path.includes('Data_Utworzenia'))) { %>
-        <%=validationErrors.find(e=>e.path.includes('Data_Utworzenia')).message%>
+        <%=__(validationErrors.find(e=>e.path.includes('Data_Utworzenia')).message)%>
         <% } %>
     </span>
 
@@ -52,9 +52,9 @@
     <table class="table-list">
         <thead>
         <tr>
-            <th><%= __('skill.fields.nazwa') %></th>
-            <th><%= __('skill.fields.max') %></th>
-            <th><%= __('skill.fields.base') %></th>
+            <th><%= __('skill.fields.Nazwa_Umi') %></th>
+            <th><%= __('classSkill.fields.MaksWrt') %></th>
+            <th><%= __('classSkill.fields.BaseWrt') %></th>
         </tr>
         </thead>
         <tbody>

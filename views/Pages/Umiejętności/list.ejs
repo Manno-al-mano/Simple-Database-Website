@@ -1,13 +1,13 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
-        <h2>Lista Umiejętności</h2>
+        <h2><%= pageTitle %></h2>
         <table class="table-list">
             <thead>
                 <tr>
-                    <th>Nazwa</th>
-                    <th>Minimalny Poziom Postaci</th>
-                    <th>Opis</th>
-                    <th>Akcje</th>
+                    <th><%= __('skill.fields.Nazwa_Umi') %></th>
+                    <th><%= __('skill.fields.MinLvl') %></th>
+                    <th><%= __('skill.fields.Desc') %></th>
+                    <th><%= __('list.actions.title') %></th>
                 </tr>
             </thead>
             <tbody>
@@ -18,13 +18,13 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="/skills/details/<%=skillunit.ID_Umiejetnosci%>" class="list-actions-button-details">Szczegóły</a>
+                            <a href="/skills/details/<%=skillunit.ID_Umiejetnosci%>" class="list-actions-button-details"><%= __('list.actions.details') %></a>
                         </li>
                         <li>
-                            <a href="/skills/edit/<%=skillunit.ID_Umiejetnosci%>" class="list-actions-button-edit">Edytuj</a>
+                            <a href="/skills/edit/<%=skillunit.ID_Umiejetnosci%>" class="list-actions-button-edit"><%= __('list.actions.edit') %></a>
                         </li>
                         <li>
-                            <a href="/skills/delete/<%=skillunit.ID_Umiejetnosci%>" class="list-actions-button-delete">Usuń</a>
+                            <a href="/skills/delete/<%=skillunit.ID_Umiejetnosci%>" class="list-actions-button-delete"><%= __('list.actions.delete') %></a>
                         </li>
                     </ul>
                 </td>
@@ -32,6 +32,6 @@
             <%}%>
             </tbody>
         </table>
-        <p><a href="/skills/add"  class="button-add">Dodaj nową Umiejętność</a></p>
+        <p><a href="/skills/add"  class="button-add"><%= __('skill.list.addNew') %></a></p>
     </main>
 <%- include('../../fragments/footer.ejs') %>

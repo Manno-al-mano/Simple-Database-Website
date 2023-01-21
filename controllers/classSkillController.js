@@ -9,7 +9,9 @@ exports.showClassSkillList = (req,res,next) => {
             res.render('Pages/KlasyUmiejętności/list',
                 {
                     classSkills:classSkills,
-                    navLocation: 'classSkill'});
+                    navLocation: 'classSkill',
+                    pageTitle: req.__('classSkill.list.pageTitle')
+                });
         });
 }
 
@@ -27,8 +29,8 @@ exports.showAddClassSkillForm = (req,res,next) => {
                 formMode: 'createNew',
                 allClasses: allClasses,
                 allSkills: allSkills,
-                pageTitle: 'Nowa Umiejętność Klasy',
-                btnLabel: 'Dodaj Umiejętność Klasy',
+                pageTitle: req.__('classSkill.form.add.pageTitle'),
+                btnLabel: req.__('classSkill.form.add.btnLabel'),
                 formAction: '/classSkills/add',
                 navLocation: 'classSkill',
                 validationErrors:[]
@@ -49,16 +51,14 @@ exports.showEditClassSkillForm = (req,res,next) => {
             return ClassSkillRepository.getClassSkillsById(classSkillId);
         })
         .then(classSkills => {
-            console.log(JSON.stringify("BBBBBB"));
-            console.log(JSON.stringify(classSkills));
             res.render('Pages/KlasyUmiejętności/form',
                 {
                     classSkills:classSkills,
                     formMode: 'edit',
                     allClasses: allClasses,
                     allSkills: allSkills,
-                    pageTitle: 'Edycja Umiejętności klasy',
-                    btnLabel: "Edytuj umiejętność klasy",
+                    pageTitle: req.__('classSkill.form.edit.pageTitle'),
+                    btnLabel: req.__('classSkill.form.edit.btnLabel'),
                     formAction: '/classSkills/edit',
                     navLocation: 'classSkill',
                     validationErrors:[]
@@ -86,7 +86,7 @@ exports.showClassSkillDetails = (req,res,next) => {
                     formMode: 'showDetails',
                     allClasses: allClasses,
                     allSkills: allSkills,
-                    pageTitle: 'Szczegóły umiejętności klasy',
+                    pageTitle: req.__('classSkill.form.detail.pageTitle'),
                     formAction: '',
                     navLocation: 'classSkill',
                     validationErrors:[]
@@ -117,8 +117,8 @@ ClassSkillRepository.createClassSkill(classSkillData)
                         formMode: 'createNewError',
                         allClasses: allClasses,
                         allSkills: allSkills,
-                        pageTitle: 'Nowa Umiejętność Klasy',
-                        btnLabel: 'Dodaj Umiejętność Klasy',
+                        pageTitle: req.__('classSkill.form.add.pageTitle'),
+                        btnLabel: req.__('classSkill.form.add.btnLabel'),
                         formAction: '/classSkills/add',
                         navLocation: 'classSkill',
                         validationErrors:err.errors
@@ -150,8 +150,8 @@ exports.updateClassSkill = (req,res,next) => {
                             formMode: 'edit',
                             allClasses: allClasses,
                             allSkills: allSkills,
-                            pageTitle: 'Edycja Umiejętności klasy',
-                            btnLabel: "Edytuj umiejętność klasy",
+                            pageTitle: req.__('classSkill.form.edit.pageTitle'),
+                            btnLabel: req.__('classSkill.form.edit.btnLabel'),
                             formAction: '/classSkills/edit',
                             navLocation: 'classSkill',
                             validationErrors:err.errors

@@ -7,7 +7,7 @@
 
     <input type="hidden" name="ID_Klasy_Umiejetnosci" value="<%=classSkills.ID_Klasy_Umiejetnosci%>">
 
-    <label for="klasa">Nazwa Klasy: <span class="symbol-required">*</span></label>
+    <label for="klasa"><%= __('classSkill.fields.Nazwa_Klasy') %>: <span class="symbol-required">*</span></label>
 
     <select name="Klasy_ID_Klasy" id="klasa" class="<%=validationErrors.find(e=>e.path.includes('Klasy_ID_Klasy'))?'error-input':''%>" required <%=(formMode=='showDetails')?'disabled':'' %>>
         <option value="" selected>--Wybierz klasę--</option>
@@ -24,11 +24,11 @@
     </select>
     <span id="errorklasa" class="errors-text">
         <%if(validationErrors.find(e=>e.path.includes('Klasy_ID_Klasy'))) { %>
-        <%=validationErrors.find(e=>e.path.includes('Klasy_ID_Klasy')).message%>
+        <%=__(validationErrors.find(e=>e.path.includes('Klasy_ID_Klasy')).message)%>
         <% } %>
     </span>
 
-    <label for="skill">Nazwa Umiejętności: <span class="symbol-required">*</span></label>
+    <label for="skill"><%= __('classSkill.fields.Nazwa_Umi') %>: <span class="symbol-required">*</span></label>
 
     <select name="Umiejetnosci_ID_Umiejetnosci" id="skill" class="<%=validationErrors.find(e=>e.path.includes('Umiejetnosci_ID_Umiejetnosci'))?'error-input':''%>" required <%=(formMode=='showDetails')?'disabled':'' %>>
         <option value="" selected>--Wybierz umiejętność--</option>
@@ -45,25 +45,25 @@
     </select>
     <span id="errorskill" class="errors-text">
         <%if(validationErrors.find(e=>e.path.includes('Umiejetnosci_ID_Umiejetnosci'))) { %>
-        <%=validationErrors.find(e=>e.path.includes('Umiejetnosci_ID_Umiejetnosci')).message%>
+        <%=__(validationErrors.find(e=>e.path.includes('Umiejetnosci_ID_Umiejetnosci')).message)%>
         <% } %>
     </span>
 
-    <label for="maxlvl">Maksymalny Poziom: <span class="symbol-required">*</span></label>
+    <label for="maxlvl"><%= __('classSkill.fields.MaksWrt') %>: <span class="symbol-required">*</span></label>
     <input type="number" name="Maksymaln_Wartosc" id="maxlvl" class="<%=validationErrors.find(e=>e.path.includes('Maksymaln_Wartosc'))?'error-input':''%>" required placeholder="5-100" value="<%=classSkills.Maksymaln_Wartosc%>"
             <%=(formMode=='showDetails')?'disabled':'' %>/>
     <span id="maxlvlerror" class="errors-text">
         <%if(validationErrors.find(e=>e.path.includes('Maksymaln_Wartosc'))) { %>
-        <%=validationErrors.find(e=>e.path.includes('Maksymaln_Wartosc')).message%>
+        <%=__(validationErrors.find(e=>e.path.includes('Maksymaln_Wartosc')).message)%>
         <% } %>
     </span>
 
-    <label for="minlvl">bazowy Poziom: <span class="symbol-required">*</span></label>
+    <label for="minlvl"><%= __('classSkill.fields.BaseWrt') %>: <span class="symbol-required">*</span></label>
     <input type="number" name="Bazowa_Wartosc" id="minlvl" class="<%=validationErrors.find(e=>e.path.includes('Bazowa_Wartosc'))?'error-input':''%>" required placeholder="0-100" value="<%=classSkills.Bazowa_Wartosc%>"
             <%=(formMode=='showDetails')?'disabled':'' %>/>
     <span id="minlvlerror"  class="errors-text">
         <%if(validationErrors.find(e=>e.path.includes('Bazowa_Wartosc'))) { %>
-        <%=validationErrors.find(e=>e.path.includes('Bazowa_Wartosc')).message%>
+        <%=__(validationErrors.find(e=>e.path.includes('Bazowa_Wartosc')).message)%>
         <% } %>
     </span>
 
@@ -74,10 +74,10 @@
         <p id="errorSummary" class="errors-text"></p>
         <%if (formMode != 'showDetails'){ %>
         <input  class="form-button-submit" type="submit" value="<%=btnLabel%>" />
-        <a  class="form-button-cancel" href="/classSkills">Anuluj</a>
+        <a  class="form-button-cancel" href="/classSkills"><%= __('form.actions.cancel') %></a>
         <% }else {%>
-        <a href="/classSkills/edit/<%=classSkills.ID_Klasy_Umiejetnosci%>" class="form-button-submit">Edytuj</a>
-            <a  class="form-button-cancel" href="/classSkills">Powrót</a>
+        <a href="/classSkills/edit/<%=classSkills.ID_Klasy_Umiejetnosci%>" class="form-button-submit"><%= __('list.actions.edit') %></a>
+            <a  class="form-button-cancel" href="/classSkills"><%= __('form.actions.return') %></a>
     </div>
     <% }%>
 

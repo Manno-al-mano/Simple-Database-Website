@@ -7,30 +7,30 @@
 
     <input type="hidden" name="ID_Umiejetnosci" value="<%=skill.ID_Umiejetnosci%>">
 
-    <label for="nazwa">Nazwa: <span class="symbol-required">*</span></label>
+    <label for="nazwa"><%= __('skill.fields.Nazwa_Umi') %>: <span class="symbol-required">*</span></label>
     <input type="text"   name="Nazwa" id="nazwa" placeholder="2-30 znaków" required value="<%=skill.Nazwa%>" class="<%=validationErrors.find(e=>e.path.includes('Nazwa'))?'error-input':''%>"
             <%=(formMode=='showDetails')?'disabled':'' %> />
     <span id="errornazwa" class="errors-text">
 <%if(validationErrors.find(e=>e.path.includes('Nazwa'))) { %>
-        <%=validationErrors.find(e=>e.path.includes('Nazwa')).message%>
+        <%=__(validationErrors.find(e=>e.path.includes('Nazwa')).message)%>
         <% } %>
     </span>
 
-    <label for="lvl">Minimalny Poziom Postaci: </label>
+    <label for="lvl"><%= __('skill.fields.MinLvl') %>: </label>
     <input type="number" name="MinimalnyPoziomPostaci" id="lvl" value="<%=skill.MinimalnyPoziomPostaci%>" class="<%=validationErrors.find(e=>e.path.includes('MinimalnyPoziomPostaci'))?'error-input':''%>"
             <%=(formMode=='showDetails')?'disabled':'' %>/>
     <span id="errorlvl" class="errors-text">
         <%if(validationErrors.find(e=>e.path.includes('MinimalnyPoziomPostaci'))) { %>
-        <%=validationErrors.find(e=>e.path.includes('MinimalnyPoziomPostaci')).message%>
+        <%=__(validationErrors.find(e=>e.path.includes('MinimalnyPoziomPostaci')).message)%>
         <% } %>
     </span>
 
-    <label for="opis">Opis: <span class="symbol-required">*</span></label>
+    <label for="opis"><%= __('skill.fields.Desc') %>: <span class="symbol-required">*</span></label>
     <textarea id="opis" name="Opis" cols="40" rows="5" placeholder="10-150 znaków" required class="<%=validationErrors.find(e=>e.path.includes('Opis'))?'error-input':''%>"
     <%=(formMode=='showDetails')?'disabled':'' %>/> <%=skill.Opis%> </textarea>
     <span id="erroropis" class="errors-text">
         <%if(validationErrors.find(e=>e.path.includes('Opis'))) { %>
-        <%=validationErrors.find(e=>e.path.includes('Opis')).message%>
+        <%=__(validationErrors.find(e=>e.path.includes('Opis')).message)%>
         <% } %>
     </span>
 
@@ -38,20 +38,20 @@
 
     <%if (formMode=='showDetails'){ %>
     <div class="form-buttons">
-        <a href="/skills/edit/<%=skill.ID_Umiejetnosci%>" class="form-button-submit">Edytuj</a>
+        <a href="/skills/edit/<%=skill.ID_Umiejetnosci%>" class="form-button-submit"><%= __('list.actions.edit') %></a>
     </div>
     <% } %>
     <%if (formMode=='showDetails'||formMode=='edit'){ %>
     <div class="form-full">
         <h2>
-            Szczegóły klas
+            <%= __('skill.form.classes') %>
         </h2>
         <table class="table-list">
             <thead>
             <tr>
-                <th>Klasa</th>
-                <th>Maksymalna Wartość</th>
-                <th>Bazowa Wartość</th>
+                <th><%= __('class.fields.Nazwa_Klasy') %></th>
+                <th><%= __('classSkill.fields.MaksWrt') %></th>
+                <th><%= __('classSkill.fields.BaseWrt') %></th>
             </tr>
             </thead>
             <tbody>
@@ -73,9 +73,9 @@
         <p id="errorSummary" class="errors-text"></p>
         <%if (formMode != 'showDetails'){ %>
         <input  class="form-button-submit" type="submit" value="<%=btnLabel%>" />
-        <a  class="form-button-cancel" href="/skills">Anuluj</a>
+        <a  class="form-button-cancel" href="/skills"><%= __('form.actions.cancel') %></a>
         <% }else {%>
-            <a  class="form-button-cancel" href="/skills">Powrót</a>
+            <a  class="form-button-cancel" href="/skills"><%= __('form.actions.return') %></a>
         <% }%>
     </div>
         <%} else {%>
@@ -84,9 +84,9 @@
                 <p id="errorSummary" class="errors-text"></p>
                 <%if (formMode != 'showDetails'){ %>
                 <input  class="form-button-submit" href="/skills/edit" type="submit" value="<%=btnLabel%>" />
-                <a  class="form-button-cancel" href="/skills">Anuluj</a>
+                <a  class="form-button-cancel" href="/skills"><%=__('form.actions.cancel') %></a>
                 <% }else {%>
-                    <a  class="form-button-cancel" href="/skills">Powrót</a>
+                    <a  class="form-button-cancel" href="/skills"><%= __('form.actions.return') %></a>
                 <% }%>
         </div>
             <%}%>

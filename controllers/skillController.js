@@ -7,6 +7,7 @@ exports.showSkillList = (req,res,next) => {
             res.render('Pages/Umiejętności/list',
                 {
                     skill:skill,
+                    pageTitle: req.__('skill.list.pageTitle'),
                     navLocation: 'skill'});
         });
 }
@@ -15,9 +16,9 @@ exports.showAddSkillForm = (req,res,next) => {
     res.render('Pages/Umiejętności/form',
         {
             skill: {},
-            pageTitle: 'Nowa Umiejętność',
+            pageTitle: req.__('skill.form.add.pageTitle'),
             formMode: 'createNew',
-            btnLabel: "Dodaj Umiejętność",
+            btnLabel: req.__('skill.form.add.btnLabel'),
             formAction: '/skills/add',
             navLocation: 'skill',
             validationErrors: []
@@ -33,8 +34,8 @@ exports.showEditSkillForm = (req,res,next) => {
                 {
                     skill:skill,
                     formMode: 'edit',
-                    pageTitle: 'Edycja Umiejętności',
-                    btnLabel: "Edytuj Umiejętność",
+                    pageTitle: req.__('skill.form.edit.pageTitle'),
+                    btnLabel: req.__('skill.form.edit.btnLabel'),
                     formAction: '/skills/edit',
                     navLocation: 'skill',
                     validationErrors:[]
@@ -50,7 +51,7 @@ exports.showSkillDetails = (req,res,next) => {
                 {
                     skill:skill,
                     formMode: 'showDetails',
-                    pageTitle: 'Szczegóły Umiejętności',
+                    pageTitle: req.__('skill.form.detail.pageTitle'),
                     formAction: '',
                     navLocation: 'skill',
                     validationErrors:[]
@@ -68,9 +69,9 @@ exports.addSkill = (req,res,next) => {
         .catch(err => {
             res.render('pages/Umiejętności/form', {
                 skill: skillData,
-                pageTitle: 'Nowa Umiejętność',
+                pageTitle: req.__('skill.form.add.pageTitle'),
                 formMode: 'createNew',
-                btnLabel: "Dodaj Umiejętność",
+                btnLabel: req.__('skill.form.add.btnLabel'),
                 formAction: '/skills/add',
                 navLocation: 'skill',
                 validationErrors: err.errors
@@ -95,8 +96,8 @@ skill.Opis=skillData.Opis;
             res.render('pages/Umiejętności/form', {
                 skill: skill,
                 formMode: 'edit',
-                pageTitle: 'Edycja Umiejętności',
-                btnLabel: "Edytuj Umiejętność",
+                pageTitle: req.__('skill.form.edit.pageTitle'),
+                btnLabel: req.__('skill.form.edit.btnLabel'),
                 formAction: '/skills/edit',
                 navLocation: 'skill',
                 validationErrors: err.errors

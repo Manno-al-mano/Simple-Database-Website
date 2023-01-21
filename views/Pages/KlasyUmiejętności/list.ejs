@@ -1,14 +1,14 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
-        <h2>Lista Umiejętności Klas</h2>
+        <h2><%= pageTitle %></h2>
         <table class="table-list">
             <thead>
                 <tr>
-                    <th>Nazwa Klasy</th>
-                    <th>Nazwa Umiejętności</th>
-                    <th>Maksymalna Wartość</th>
-                    <th>Bazowa Wartość</th>
-                    <th>Akcje</th>
+                    <th><%= __('classSkill.fields.Nazwa_Klasy') %></th>
+                    <th><%= __('classSkill.fields.Nazwa_Umi') %></th>
+                    <th><%= __('classSkill.fields.MaksWrt') %></th>
+                    <th><%= __('classSkill.fields.BaseWrt') %></th>
+                    <th><%= __('list.actions.title') %></th>
                 </tr>
             </thead>
             <tbody>
@@ -21,13 +21,13 @@
                 <td>
                     <ul >
                         <li>
-                            <a href="/classSkills/details/<%=classSkill.ID_Klasy_Umiejetnosci%>" class="list-actions-button-details">Szczegóły</a>
+                            <a href="/classSkills/details/<%=classSkill.ID_Klasy_Umiejetnosci%>" class="list-actions-button-details"><%= __('list.actions.details') %></a>
                         </li>
                         <li>
-                            <a href="/classSkills/edit/<%=classSkill.ID_Klasy_Umiejetnosci%>" class="list-actions-button-edit">Edytuj</a>
+                            <a href="/classSkills/edit/<%=classSkill.ID_Klasy_Umiejetnosci%>" class="list-actions-button-edit"><%= __('list.actions.edit') %></a>
                         </li>
                         <li>
-                            <a href="/classSkills/delete/<%=classSkill.ID_Klasy_Umiejetnosci%>" class="list-actions-button-delete">Usuń</a>
+                            <a href="/classSkills/delete/<%=classSkill.ID_Klasy_Umiejetnosci%>" class="list-actions-button-delete"><%= __('list.actions.delete') %></a>
                         </li>
                     </ul>
                 </td>
@@ -36,6 +36,6 @@
             </tbody>
 
         </table>
-        <p><a href="/classSkills/add" class="button-add">Dodaj nową Umiejętność Klasy</a></p>
+        <p><a href="/classSkills/add" class="button-add"><%= __('classSkill.list.addNew') %></a></p>
     </main>
 <%- include('../../fragments/footer.ejs') %>

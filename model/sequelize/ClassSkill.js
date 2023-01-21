@@ -14,7 +14,7 @@ const ClassSkill = sequelize.define('ClassSkill', {
         foreignKey: true,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "validationMessage.fieldRequired"
             }
         }
     },
@@ -24,7 +24,7 @@ const ClassSkill = sequelize.define('ClassSkill', {
         foreignKey: true,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "validationMessage.fieldRequired"
             }
         }
     },
@@ -33,22 +33,22 @@ const ClassSkill = sequelize.define('ClassSkill', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "validationMessage.fieldRequired"
             },
             isNumeric: {
-                msg: "Pole musi być liczbą"
+                msg: "validationMessage.isNumber"
             },
             isInt: {
-                msg: "Pole musi być liczbą całkowitą"
+                msg: "validationMessage.isInt"
             },
             min: {
                 args: 5,
-                msg: "Pole musi być większe lub równe 5"
+                msg: "validationMessage.isInRange5to100"
 
             },
             max: {
                 args: 100,
-                msg: "Pole musi być mniejsze lub równe 100"
+                msg: "validationMessage.isInRange5to100"
             }
 
         }
@@ -58,26 +58,26 @@ const ClassSkill = sequelize.define('ClassSkill', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "validationMessage.fieldRequired"
             },
             isNumeric: {
-                msg: "Pole musi być liczbą"
+                msg: "validationMessage.isNumber"
             },
             isInt: {
-                msg: "Pole musi być liczbą całkowitą"
+                msg: "validationMessage.isInt"
             },
             min: {
                 args: [0],
-                msg: "Pole musi być większe lub równe 0"
+                msg: "validationMessage.isInRange0to100"
 
             },
             max: {
                 args: 100,
-                msg: "Pole musi być mniejsze lub równe 100"
+                msg: "validationMessage.isInRange0to100"
             },
             beforeMax(value){
                 if(parseInt(this.Maksymaln_Wartosc)<parseInt(value)){
-                    throw new Error("Pole musi być niższe od wartości maksymalnej");
+                    throw new Error("validationMessage.isHigherThanMax");
                 }
             }
         }

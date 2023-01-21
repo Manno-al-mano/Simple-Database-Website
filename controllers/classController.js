@@ -67,9 +67,9 @@ exports.addClass = (req,res,next) => {
         .catch(err => {
             res.render('Pages/Klasy/form', {
                 clas: classData,
-                pageTitle: 'Nowa klasa',
+                pageTitle: req.__('class.form.add.pageTitle'),
                 formMode: 'createNew',
-                btnLabel: "Dodaj klasę",
+                btnLabel: req.__('class.form.add.btnLabel'),
                 formAction: '/classes/add',
                 navLocation: 'class',
                 validationErrors: err.errors
@@ -94,8 +94,8 @@ const classId = req.body.ID_Klasy;
                         {
                             clas:clas,
                             formMode: 'edit',
-                            pageTitle: 'Edycja klasy',
-                            btnLabel: "Edytuj klasę",
+                            pageTitle: req.__('class.form.edit.pageTitle'),
+                            btnLabel: req.__('class.form.edit.btnLabel'),
                             formAction: '/classes/edit',
                             navLocation: 'class',
                             validationErrors:err.errors

@@ -14,11 +14,11 @@ const Skill = sequelize.define('Skill', {
         unique: true,
         validate:{
             notEmpty:{
-                msg: "Pole jest wymagane"
+                msg: "validationMessage.fieldRequired"
             },
             len: {
                 args:[2,30],
-                msg: "Pole powinno zawierać od 2 do 30 znaków"
+                msg: "validationMessage.isInCharRange2to30"
             }
         }
     },
@@ -27,19 +27,19 @@ const Skill = sequelize.define('Skill', {
         allowNull: true,
         validate:{
            isNumeric:{
-                msg: "Pole musi być liczbą"
+                msg: "validationMessage.isNumber"
             },
             isInt:{
-                msg: "Pole musi być liczbą całkowitą"
+                msg: "validationMessage.isInt"
             },
             min: {
                 args: 1,
-                msg:"Pole musi być conajmniej 1"
+                msg: "validationMessage.isInRange1to500"
 
             },
             max:{
                 args:500,
-                msg:"Pole musi być maksymalnie 500"
+                msg:"validationMessage.isInRange1to500"
             }
         }
     },
@@ -48,11 +48,11 @@ const Skill = sequelize.define('Skill', {
         allowNull: false,
         validate:{
             notEmpty:{
-                msg: "Pole jest wymagane"
+                msg: "validationMessage.fieldRequired"
             },
             len: {
                 args:[10,150],
-                msg: "Pole powinno zawierać od 10 do 150 znaków"
+                msg: "validationMessage.isInCharRange10to150"
             }
         }
     }

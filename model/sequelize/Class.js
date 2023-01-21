@@ -24,11 +24,11 @@ const Class = sequelize.define('Class', {
             unique: true,
             validate:{
                 notEmpty:{
-                   msg: "Pole jest wymagane"
+                   msg: "validationMessage.fieldRequired"//"Pole jest wymagane"
                 },
                 len: {
                     args:[2,30],
-                    msg: "Pole powinno zawierać od 2 do 30 znaków"
+                    msg: "validationMessage.isInCharRange2to30"
                 }
             }
         },
@@ -37,22 +37,22 @@ const Class = sequelize.define('Class', {
             allowNull: false,
             validate: {
                 notEmpty: {
-                    msg: "Pole jest wymagane"
+                    msg: "validationMessage.fieldRequired"
                 },
                 isNumeric: {
-                    msg: "Pole musi być liczbą"
+                    msg: "validationMessage.isNumber"
                 },
                 isInt: {
-                    msg: "Pole musi być liczbą całkowitą"
+                    msg: "validationMessage.isInt"
                 },
                 min: {
                     args: 5,
-                    msg: "Pole musi być większe lub równe 5"
+                    msg: "validationMessage.isInRange5to100"
 
                 },
                 max: {
                     args: 100,
-                    msg: "Pole musi być mniejsze lub równe 100"
+                    msg: "validationMessage.isInRange5to100"
                 }
 
             }
@@ -61,10 +61,13 @@ const Class = sequelize.define('Class', {
             type: Sequelize.DATE,
             allowNull: false,
             validate: {
-                isDate: {msg: "Pole powinno zawierać datę w formacie dd.mm.yyyy"},
+                notEmpty: {
+                    msg: "validationMessage.fieldRequired"
+                },
+                isDate: {msg: "validationMessage.isDate"},
                 isBefore: {
                     args: tomorrowString,
-                    msg: "data nie może być przyszła"
+                    msg: "validationMessage.isFuture"
                 }
             }
         }
