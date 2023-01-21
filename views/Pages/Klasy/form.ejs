@@ -7,7 +7,7 @@
 
     <input type="hidden" name="ID_Klasy" value="<%=clas.ID_Klasy%>">
 
-    <label for="nazwa">Nazwa klasy: <span class="symbol-required">*</span></label>
+    <label for="nazwa"><%= __('class.fields.Nazwa_Klasy') %>: <span class="symbol-required">*</span></label>
     <input type="text" name="Nazwa_Klasy" id="nazwa" placeholder="2-30 znaków" value="<%=clas.Nazwa_Klasy%>" class="<%=validationErrors.find(e=>e.path.includes('Nazwa_Klasy'))?'error-input':''%>"
     <%=(formMode=='showDetails')?'disabled':'' %>/>
     <span id="errornazwa" class="errors-text" >
@@ -16,7 +16,7 @@
         <% } %>
     </span>
 
-    <label for="lvl">Maksymalny poziom: <span class="symbol-required">*</span> </label>
+    <label for="lvl"><%= __('class.fields.Maksymalny_Poziom') %>: <span class="symbol-required">*</span> </label>
     <input type="number" name="Maksymalny_Poziom" id="lvl" placeholder="5-100" value="<%=clas.Maksymalny_Poziom%>" class="<%=validationErrors.find(e=>e.path.includes('Maksymalny_Poziom'))?'error-input':''%>"
             <%=(formMode=='showDetails')?'disabled':'' %>/>
     <span id="errorlvl" class="errors-text">
@@ -25,7 +25,7 @@
         <% } %>
     </span>
 
-    <label for="date">Data dodania: <span class="symbol-required">*</span></label>
+    <label for="date"><%= __('class.fields.Data_Utworzenia') %>: <span class="symbol-required">*</span></label>
     <input type="date" name="Data_Utworzenia" id="date" class="<%=validationErrors.find(e=>e.path.includes('Data_Utworzenia'))?'error-input':''%>"
             <%if(formMode=='createNew') {%> value="<%=clas.Data_Utworzenia %>" <% }
     else { %>value="<%=clas.Data_Utworzenia.toISOString().split('T')[0] %>" <%}%>
@@ -41,20 +41,20 @@
 
     <%if (formMode=='showDetails'){ %>
     <div class="form-buttons">
-        <a href="/classes/edit/<%=clas.ID_Klasy%>" class="form-button-submit">Edytuj</a>
+        <a href="/classes/edit/<%=clas.ID_Klasy%>" class="form-button-submit"><%= __('list.actions.edit') %></a>
     </div>
     <% } %>
     <%if (formMode=='showDetails'||formMode=='edit'){ %>
     <div class="form-full">
     <h2>
-        Szczegóły umiejętności
+        <%= __('class.form.skills') %>
     </h2>
     <table class="table-list">
         <thead>
         <tr>
-            <th>Umiejętność</th>
-            <th>Maksymalna Wartość</th>
-            <th>Bazowa Wartość</th>
+            <th><%= __('skill.fields.nazwa') %></th>
+            <th><%= __('skill.fields.max') %></th>
+            <th><%= __('skill.fields.base') %></th>
         </tr>
         </thead>
         <tbody>
@@ -76,9 +76,9 @@
         <p id="errorSummary" class="errors-text"></p>
         <%if (formMode != 'showDetails'){ %>
         <input  class="form-button-submit" type="submit" value="<%=btnLabel%>" />
-        <a  class="form-button-cancel" href="/classes">Anuluj</a>
+        <a  class="form-button-cancel" href="/classes"><%= __('form.actions.cancel') %></a>
         <% }else {%>
-            <a  class="form-button-cancel" href="/classes">Powrót</a>
+            <a  class="form-button-cancel" href="/classes"><%= __('form.actions.return') %></a>
     </div>
     <% }%>
         <%} else {%>
@@ -86,9 +86,9 @@
             <p id="errorSummary" class="errors-text"></p>
             <%if (formMode != 'showDetails'){ %>
             <input  class="form-button-submit" href="/classes/edit" type="submit" value="<%=btnLabel%>" />
-            <a  class="form-button-cancel" href="/classes">Anuluj</a>
+            <a  class="form-button-cancel" href="/classes"><%= __('form.actions.cancel') %></a>
             <% }else {%>
-                <a  class="form-button-cancel" href="/classes">Powrót</a>
+                <a  class="form-button-cancel" href="/classes"><%= __('form.actions.return') %></a>
         </div>
         <% }%>
         <%}%>

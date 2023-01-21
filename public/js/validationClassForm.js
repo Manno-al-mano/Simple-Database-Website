@@ -10,39 +10,45 @@ function validateForm() {
     let classValid = true;
 //sprawdzam nazwę klasy
     if (!checkRequired(classNameInput.value)) {
+        const reqcMessage = document.getElementById('errorMessage-required').innerText;
         classValid = false;
         classNameInput.classList.add("error-input");
-        classErrorName.innerText = "Pole jest wymagane";
+        classErrorName.innerText = reqcMessage;
 
     } else if (!checkTextLengthRange(classNameInput.value, 2, 30)) {
+        const reqcMessage = document.getElementById('errorMessage-isInCharRange2to30').innerText;
         classValid = false;
         classNameInput.classList.add("error-input");
-        classErrorName.innerText = "Pole powinno zawierać od 2 do 30 znaków";
+        classErrorName.innerText = reqcMessage;
     }
     //sprawdzam wartość poziomu
 
 
 
-    if(!checkRequired(classMaxLvlInput.value)){
+    if(!checkRequired(classMaxLvlInput.value)) {
+        const reqcMessage = document.getElementById('errorMessage-required').innerText;
         classValid = false;
         classMaxLvlInput.classList.add("error-input");
-        clasErrorMaxLvl.innerText = "Pole jest wymagane";
+        clasErrorMaxLvl.innerText = reqcMessage;
     }
     //niepotrzebne
    else if (!checkNumber(classMaxLvlInput.value)){
+        const reqcMessage = document.getElementById('errorMessage-isNumber').innerText;
         classValid = false;
         classMaxLvlInput.classList.add("error-input");
-        clasErrorMaxLvl.innerText = "Pole powinno być liczbą";
+        clasErrorMaxLvl.innerText = reqcMessage;
     }
     else if (!checkInt(classMaxLvlInput.value)){
+        const reqcMessage = document.getElementById('errorMessage-isInt').innerText;
         classValid = false;
         classMaxLvlInput.classList.add("error-input");
-        clasErrorMaxLvl.innerText = "Pole powinno być liczbą całkowitą";
+        clasErrorMaxLvl.innerText = reqcMessage;
     }
     else if (!checkNumberRange(classMaxLvlInput.value,5,100)){
+        const reqcMessage = document.getElementById('errorMessage-isInRange5to100').innerText;
          classValid = false;
         classMaxLvlInput.classList.add("error-input");
-         clasErrorMaxLvl.innerText = "Pole powinno być w zakresie od 5 do 100";
+         clasErrorMaxLvl.innerText = reqcMessage;
      }
 //sprawdzam datę;
     const today = new Date(),
@@ -59,27 +65,31 @@ if(day.length<2)
 const nowString = [year,month,day].join('-');
 
     if(!checkRequired(classDateInput.value)){
+        const reqcMessage = document.getElementById('errorMessage-required').innerText;
         classValid = false;
         classDateInput.classList.add("error-input");
-        classErrorDate.innerText = "Pole jest wymagane";
+        classErrorDate.innerText = reqcMessage;
     }
 
     //niepotrzebne
 else if(!checkDate(classDateInput.value)){
+        const reqcMessage = document.getElementById('errorMessage-isDate').innerText;
     classValid = false;
     classDateInput.classList.add("error-input");
-    classErrorDate.innerText = "Pole powinno zawierać datę w formacie dd.mm.yyyy";
+    classErrorDate.innerText = reqcMessage;
 }
   else  if(checkDateIfAfter(classDateInput.value,nowString)){
+        const reqcMessage = document.getElementById('errorMessage-isFuture').innerText;
         classValid = false;
         classDateInput.classList.add("error-input");
-        classErrorDate.innerText = "Pole powinno nie powinno zawierać przyszłej daty";
+        classErrorDate.innerText = reqcMessage;
     }
 
 
 //wyświetlam generalny błąd
     if (!classValid) {
-        classErrorSummary.innerText = "Formularz zawiera błędy";
+        const reqcMessage = document.getElementById('errorMessage-General').innerText;
+        classErrorSummary.innerText = reqcMessage;
     }
     return classValid;
 }

@@ -1,13 +1,13 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
-        <h2>Lista Klas</h2>
+        <h2><%= pageTitle %></h2>
         <table class="table-list">
             <thead>
                 <tr>
-                    <th>Nazwa Klasy</th>
-                    <th>Maksymalny Poziom</th>
-                    <th>Data Utworzenia</th>
-                    <th>Akcje</th>
+                    <th><%= __('class.fields.Nazwa_Klasy') %></th>
+                    <th><%= __('class.fields.Maksymalny_Poziom') %></th>
+                    <th><%= __('class.fields.Data_Utworzenia') %></th>
+                    <th><%= __('list.actions.title') %></th>
                 </tr>
             </thead>
             <tbody>
@@ -19,13 +19,13 @@
                 <td>
                     <ul class="list-actions">
                         <li>
-                            <a href="/classes/details/<%=clasunit.ID_Klasy%>" class="list-actions-button-details">Szczegóły</a>
+                            <a href="/classes/details/<%=clasunit.ID_Klasy%>" class="list-actions-button-details"><%= __('list.actions.details') %></a>
                         </li>
                         <li>
-                            <a href="/classes/edit/<%=clasunit.ID_Klasy%>" class="list-actions-button-edit">Edytuj</a>
+                            <a href="/classes/edit/<%=clasunit.ID_Klasy%>" class="list-actions-button-edit"><%= __('list.actions.edit') %></a>
                         </li>
                         <li>
-                            <a href="/classes/delete/<%=clasunit.ID_Klasy%>" class="list-actions-button-delete">Usuń</a>
+                            <a href="/classes/delete/<%=clasunit.ID_Klasy%>" class="list-actions-button-delete"><%= __('list.actions.delete') %></a>
                         </li>
                     </ul>
                 </td>
@@ -33,6 +33,6 @@
             <%}%>
             </tbody>
         </table>
-        <p><a href="/classes/add" class="button-add">Dodaj nową klasę</a></p>
+        <p><a href="/classes/add" class="button-add"><%= __('class.list.addNew') %></a></p>
     </main>
 <%- include('../../fragments/footer.ejs') %>

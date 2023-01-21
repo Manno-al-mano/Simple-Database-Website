@@ -7,7 +7,9 @@ exports.showClassList = (req,res,next) => {
             res.render('Pages/Klasy/list',
                 {
                     clas:clas,
-                    navLocation: 'class'});
+                    navLocation: 'class',
+                pageTitle: req.__('class.list.pageTitle')
+                });
         });
 }
 
@@ -15,9 +17,9 @@ exports.showAddClassForm = (req,res,next) => {
     res.render('Pages/Klasy/form',
         {
             clas:{},
-            pageTitle: 'Nowa klasa',
+            pageTitle: req.__('class.form.add.pageTitle'),
             formMode: 'createNew',
-            btnLabel: "Dodaj klasę",
+            btnLabel: req.__('class.form.add.btnLabel'),
             formAction: '/classes/add',
             navLocation: 'class',
             validationErrors:[]});
@@ -32,8 +34,8 @@ exports.showEditClassForm = (req,res,next) => {
                 {
                     clas:clas,
                     formMode: 'edit',
-                    pageTitle: 'Edycja klasy',
-                    btnLabel: "Edytuj klasę",
+                    pageTitle: req.__('class.form.edit.pageTitle'),
+                    btnLabel: req.__('class.form.edit.btnLabel'),
                     formAction: '/classes/edit',
                     navLocation: 'class',
                     validationErrors:[]
@@ -49,7 +51,7 @@ exports.showClassDetails = (req,res,next) => {
                 {
                     clas:clas,
                     formMode: 'showDetails',
-                    pageTitle: 'Szczegóły klasy',
+                    pageTitle: req.__('class.form.detail.pageTitle'),
                     formAction: '',
                     navLocation: 'class',
                     validationErrors:[]

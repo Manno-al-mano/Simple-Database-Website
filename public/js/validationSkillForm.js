@@ -10,14 +10,17 @@ function validateForm() {
     let skillValid = true;
 //sprawdzam nazwę umiejętności
     if (!checkRequired(skillNameInput.value)) {
+        const reqMessage = document.getElementById('errorMessage-required').innerText;
         skillValid = false;
         skillNameInput.classList.add("error-input");
-        skillErrorName.innerText = "Pole jest wymagane";
+        skillErrorName.innerText = reqMessage;
 
     } else if (!checkTextLengthRange(skillNameInput.value, 2, 30)) {
+        const reqMessage = document.getElementById('errorMessage-isInCharRange2to30').innerText;
         skillValid = false;
         skillNameInput.classList.add("error-input");
-        skillErrorName.innerText = "Pole powinno zawierać od 2 do 30 znaków";
+        //skillErrorName.innerText = "Pole powinno zawierać od 2 do 30 znaków";
+        skillErrorName.innerText = reqMessage;
     }
     //sprawdzam wartość poziomu
 
@@ -27,37 +30,44 @@ function validateForm() {
     }
     //niepotrzebne
     else if (!checkNumber(skillMinLvlInput.value)){
+        const reqMessage = document.getElementById('errorMessage-isNumber').innerText;
         skillValid = false;
         skillMinLvlInput.classList.add("error-input");
-        skillErrorMinLvl.innerText = "Pole powinno być liczbą";
+        //skillErrorMinLvl.innerText = "Pole powinno być liczbą";
+        skillErrorMinLvl.innerText = reqMessage;
     }
     else if (!checkInt(skillMinLvlInput.value)){
+        const reqMessage = document.getElementById('errorMessage-isInt').innerText;
         skillValid = false;
         skillMinLvlInput.classList.add("error-input");
-        skillErrorMinLvl.innerText = "Pole powinno być liczbą całkowitą";
+        skillErrorMinLvl.innerText = reqMessage;
     }
     else if (!checkNumberRange(skillMinLvlInput.value,1,500)){
+        const reqMessage = document.getElementById('errorMessage-isInRange1to500').innerText;
         skillValid = false;
         skillMinLvlInput.classList.add("error-input");
-        skillErrorMinLvl.innerText = "Pole powinno być w zakresie od 1 do 500";
+        skillErrorMinLvl.innerText = reqMessage;
     }
 
 
     if (!checkRequired(skillDescrInput.value)) {
+        const reqMessage = document.getElementById('errorMessage-required').innerText;
         skillValid = false;
         skillDescrInput.classList.add("error-input");
-        skillErrorDescr.innerText = "Pole jest wymagane";
+        skillErrorDescr.innerText = reqMessage;
 
     } else if (!checkTextLengthRange(skillDescrInput.value, 10, 150)) {
+        const reqMessage = document.getElementById('errorMessage-isInCharRange10to150').innerText;
         skillValid = false;
         skillDescrInput.classList.add("error-input");
-        skillErrorDescr.innerText ="Pole powinno zawierać od 10 do 150 znaków";
+        skillErrorDescr.innerText =reqMessage;
     }
 
 
 //wyświetlam generalny błąd
     if (!skillValid) {
-        skillErrorSummary.innerText = "Formularz zawiera błędy";
+        const reqMessage = document.getElementById('errorMessage-General').innerText;
+        skillErrorSummary.innerText = reqMessage;
     }
     return skillValid;
 }

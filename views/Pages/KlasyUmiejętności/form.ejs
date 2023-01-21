@@ -3,7 +3,7 @@
     <script type="application/javascript" src="/js/validationCommon.js"></script>
     <script type="application/javascript" src="/js/validationSkillClassForm.js"></script>
     <h2><%= pageTitle %></h2>
-    <form class="form" method="post" action="<%= formAction %>" novalidateonsubmit="return validateForm();">
+    <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
 
     <input type="hidden" name="ID_Klasy_Umiejetnosci" value="<%=classSkills.ID_Klasy_Umiejetnosci%>">
 
@@ -12,7 +12,6 @@
     <select name="Klasy_ID_Klasy" id="klasa" class="<%=validationErrors.find(e=>e.path.includes('Klasy_ID_Klasy'))?'error-input':''%>" required <%=(formMode=='showDetails')?'disabled':'' %>>
         <option value="" selected>--Wybierz klasę--</option>
         <% for (let i=0;i<allClasses.length;i++ ){let clas = allClasses[i]; %>
-        <%console.log("GGGGGGGGGGG")%>
         <option value="<%=clas.ID_Klasy%>" label="<%=clas.Nazwa_Klasy%>"
                 <%if(formMode!='createNewError') {%>
                 <%= (classSkills.ID_Klasy_Umiejetnosci&&clas.ID_Klasy.toString()==classSkills.Klasy_ID_Klasy.toString())? 'selected':''%>>

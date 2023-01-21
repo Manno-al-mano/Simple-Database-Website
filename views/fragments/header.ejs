@@ -12,15 +12,17 @@
 
 <body>
 <header>
-    <h1>Bohaterowie Heroizmu</h1>
+    <h1><%= __('title') %></h1>
     <img src="/images/logo.png" width="250"
          height="250" alt="BHLogo">
 </header>
 <nav>
     <ul>
-        <li><a   href="/" class="<%= navLocation == 'main' ? 'active' : ''%>">Strona główna</a></li>
-        <li><a  href="/classes" class="<%= navLocation == 'class' ? 'active' : ''%>">Klasy</a></li>
-        <li><a  href="/skills" class="<%= navLocation == 'skill' ? 'active' : ''%>">Umiejętności</a></li>
-        <li><a  href="/classSkills" class="<%= navLocation == 'classSkill' ? 'active' : ''%>">Klasy Umiejętności</a></li>
+        <li><a   href="/" class="<%= navLocation == 'main' ? 'active' : ''%>"><%= __('nav.main-page') %></a></li>
+        <li><a  href="/classes" class="<%= navLocation == 'class' ? 'active' : ''%>"><%= __('nav.class') %></a></li>
+        <li><a  href="/skills" class="<%= navLocation == 'skill' ? 'active' : ''%>"><%= __('nav.skill') %></a></li>
+        <li><a  href="/classSkills" class="<%= navLocation == 'classSkill' ? 'active' : ''%>"><%= __('nav.classSkill') %></a></li>
+        <li><a href="/changeLang/pl" class="<%= lang == 'pl' ? 'active' : ''%>">PL</a></li>
+        <li><a href="/changeLang/en" class="<%= lang == 'en' ? 'active' : ''%>">EN</a></li>
     </ul>
 </nav>
