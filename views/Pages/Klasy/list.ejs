@@ -1,0 +1,38 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2><%= pageTitle %></h2>
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th><%= __('class.fields.Nazwa_Klasy') %></th>
+                    <th><%= __('class.fields.Maksymalny_Poziom') %></th>
+                    <th><%= __('class.fields.Data_Utworzenia') %></th>
+                    <th><%= __('list.actions.title') %></th>
+                </tr>
+            </thead>
+            <tbody>
+            <% for (let clasunit of clas) { %>
+                <tr>
+                <td><%=clasunit.Nazwa_Klasy%></td>
+                <td><%=clasunit.Maksymalny_Poziom%></td>
+                <td><%=clasunit.Data_Utworzenia.toISOString().split('T')[0]%></td>
+                <td>
+                    <ul class="list-actions">
+                        <li>
+                            <a href="/classes/details/<%=clasunit.ID_Klasy%>" class="list-actions-button-details"><%= __('list.actions.details') %></a>
+                        </li>
+                        <li>
+                            <a href="/classes/edit/<%=clasunit.ID_Klasy%>" class="list-actions-button-edit"><%= __('list.actions.edit') %></a>
+                        </li>
+                        <li>
+                            <a href="/classes/delete/<%=clasunit.ID_Klasy%>" class="list-actions-button-delete"><%= __('list.actions.delete') %></a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <%}%>
+            </tbody>
+        </table>
+        <p><a href="/classes/add" class="button-add"><%= __('class.list.addNew') %></a></p>
+    </main>
+<%- include('../../fragments/footer.ejs') %>

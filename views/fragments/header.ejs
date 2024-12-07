@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html lang="pl-PL">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bohaterowie Heroizmu Demo</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+
+<body>
+<header>
+    <h1><%= __('title') %></h1>
+    <img src="/images/logo.png" width="250"
+         height="250" alt="BHLogo">
+</header>
+<nav>
+    <ul>
+        <li><a   href="/" class="<%= navLocation == 'main' ? 'active' : ''%>"><%= __('nav.main-page') %></a></li>
+        <li><a  href="/classes" class="<%= navLocation == 'class' ? 'active' : ''%>"><%= __('nav.class') %></a></li>
+        <li><a  href="/skills" class="<%= navLocation == 'skill' ? 'active' : ''%>"><%= __('nav.skill') %></a></li>
+        <li><a  href="/classSkills" class="<%= navLocation == 'classSkill' ? 'active' : ''%>"><%= __('nav.classSkill') %></a></li>
+        <li><a href="/changeLang/pl" class="<%= lang == 'pl' ? 'active' : ''%>">PL</a></li>
+        <li><a href="/changeLang/en" class="<%= lang == 'en' ? 'active' : ''%>">EN</a></li>
+    </ul>
+</nav>

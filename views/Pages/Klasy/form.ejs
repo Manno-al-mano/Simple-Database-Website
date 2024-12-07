@@ -1,0 +1,102 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <script type="application/javascript" src="/js/validationClassForm.js"></script>
+<h2><%= pageTitle %></h2>
+<form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
+
+    <input type="hidden" name="ID_Klasy" value="<%=clas.ID_Klasy%>">
+
+    <label for="nazwa"><%= __('class.fields.Nazwa_Klasy') %>: <span class="symbol-required">*</span></label>
+    <input type="text" name="Nazwa_Klasy" id="nazwa" placeholder="2-30 znaków" value="<%=clas.Nazwa_Klasy%>" class="<%=validationErrors.find(e=>e.path.includes('Nazwa_Klasy'))?'error-input':''%>"
+    <%=(formMode=='showDetails')?'disabled':'' %>/>
+    <span id="errornazwa" class="errors-text" >
+        <%if(validationErrors.find(e=>e.path.includes('Nazwa_Klasy'))) { %>
+        <%=__(validationErrors.find(e=>e.path.includes('Nazwa_Klasy')).message)%>
+        <% } %>
+    </span>
+
+    <label for="lvl"><%= __('class.fields.Maksymalny_Poziom') %>: <span class="symbol-required">*</span> </label>
+    <input type="number" name="Maksymalny_Poziom" id="lvl" placeholder="5-100" value="<%=clas.Maksymalny_Poziom%>" class="<%=validationErrors.find(e=>e.path.includes('Maksymalny_Poziom'))?'error-input':''%>"
+            <%=(formMode=='showDetails')?'disabled':'' %>/>
+    <span id="errorlvl" class="errors-text">
+        <%if(validationErrors.find(e=>e.path.includes('Maksymalny_Poziom'))) { %>
+        <%=__(validationErrors.find(e=>e.path.includes('Maksymalny_Poziom')).message)%>
+        <% } %>
+    </span>
+
+    <label for="date"><%= __('class.fields.Data_Utworzenia') %>: <span class="symbol-required">*</span></label>
+    <input type="date" name="Data_Utworzenia" id="date" class="<%=validationErrors.find(e=>e.path.includes('Data_Utworzenia'))?'error-input':''%>"
+            <%if(formMode=='createNew') {%> value="<%=clas.Data_Utworzenia %>" <% }
+    else { %>value="<%=clas.Data_Utworzenia.toISOString().split('T')[0] %>" <%}%>
+            <%=(formMode=='showDetails')?'disabled':'' %>/>
+    <span id="errordate" class="errors-text">
+        <%if(validationErrors.find(e=>e.path.includes('Data_Utworzenia'))) { %>
+        <%=__(validationErrors.find(e=>e.path.includes('Data_Utworzenia')).message)%>
+        <% } %>
+    </span>
+
+
+
+
+    <%if (formMode=='showDetails'){ %>
+    <div class="form-buttons">
+        <a href="/classes/edit/<%=clas.ID_Klasy%>" class="form-button-submit"><%= __('list.actions.edit') %></a>
+    </div>
+    <% } %>
+    <%if (formMode=='showDetails'||formMode=='edit'){ %>
+    <div class="form-full">
+    <h2>
+        <%= __('class.form.skills') %>
+    </h2>
+    <table class="table-list">
+        <thead>
+        <tr>
+            <th><%= __('skill.fields.Nazwa_Umi') %></th>
+            <th><%= __('classSkill.fields.MaksWrt') %></th>
+            <th><%= __('classSkill.fields.BaseWrt') %></th>
+        </tr>
+        </thead>
+        <tbody>
+        <%for (let cs of clas.classSkills) { %>
+        <tr>
+            <td><a href="/skills/details/<%=cs.skill.ID_Umiejetnosci%>"><%=cs.skill.Nazwa%></a> </td>
+            <td><%=cs.Maksymaln_Wartosc%></td>
+            <td><%=cs.Bazowa_Wartosc%></td>
+        </tr>
+        <%}%>
+        </tbody>
+
+    </table>
+
+        </div>
+
+
+    <div class="form-full">
+        <p id="errorSummary" class="errors-text"></p>
+        <%if (formMode != 'showDetails'){ %>
+        <input  class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+        <a  class="form-button-cancel" href="/classes"><%= __('form.actions.cancel') %></a>
+        <% }else {%>
+            <a  class="form-button-cancel" href="/classes"><%= __('form.actions.return') %></a>
+    </div>
+    <% }%>
+        <%} else {%>
+        <div class="form-buttons">
+            <p id="errorSummary" class="errors-text"></p>
+            <%if (formMode != 'showDetails'){ %>
+            <input  class="form-button-submit" href="/classes/edit" type="submit" value="<%=btnLabel%>" />
+            <a  class="form-button-cancel" href="/classes"><%= __('form.actions.cancel') %></a>
+            <% }else {%>
+                <a  class="form-button-cancel" href="/classes"><%= __('form.actions.return') %></a>
+        </div>
+        <% }%>
+        <%}%>
+
+
+</form>
+
+</main>
+<%- include('../../fragments/footer.ejs') %>
+
+

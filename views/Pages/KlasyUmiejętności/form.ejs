@@ -1,0 +1,90 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <script type="application/javascript" src="/js/validationSkillClassForm.js"></script>
+    <h2><%= pageTitle %></h2>
+    <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
+
+    <input type="hidden" name="ID_Klasy_Umiejetnosci" value="<%=classSkills.ID_Klasy_Umiejetnosci%>">
+
+    <label for="klasa"><%= __('classSkill.fields.Nazwa_Klasy') %>: <span class="symbol-required">*</span></label>
+
+    <select name="Klasy_ID_Klasy" id="klasa" class="<%=validationErrors.find(e=>e.path.includes('Klasy_ID_Klasy'))?'error-input':''%>" required <%=(formMode=='showDetails')?'disabled':'' %>>
+        <option value="" selected>--Wybierz klasę--</option>
+        <% for (let i=0;i<allClasses.length;i++ ){let clas = allClasses[i]; %>
+        <option value="<%=clas.ID_Klasy%>" label="<%=clas.Nazwa_Klasy%>"
+                <%if(formMode!='createNewError') {%>
+                <%= (classSkills.ID_Klasy_Umiejetnosci&&clas.ID_Klasy.toString()==classSkills.Klasy_ID_Klasy.toString())? 'selected':''%>>
+            <%} else {%>
+                <%= (clas.ID_Klasy.toString()==classSkills.Klasy_ID_Klasy.toString())? 'selected':''%>>
+            <%}%>
+        </option>
+        <%}%>
+
+    </select>
+    <span id="errorklasa" class="errors-text">
+        <%if(validationErrors.find(e=>e.path.includes('Klasy_ID_Klasy'))) { %>
+        <%=__(validationErrors.find(e=>e.path.includes('Klasy_ID_Klasy')).message)%>
+        <% } %>
+    </span>
+
+    <label for="skill"><%= __('classSkill.fields.Nazwa_Umi') %>: <span class="symbol-required">*</span></label>
+
+    <select name="Umiejetnosci_ID_Umiejetnosci" id="skill" class="<%=validationErrors.find(e=>e.path.includes('Umiejetnosci_ID_Umiejetnosci'))?'error-input':''%>" required <%=(formMode=='showDetails')?'disabled':'' %>>
+        <option value="" selected>--Wybierz umiejętność--</option>
+        <% for (let i=0;i<allSkills.length;i++ ){let skill = allSkills[i]; %>
+        <option value="<%=skill.ID_Umiejetnosci %>" label="<%=skill.Nazwa%>"
+        <%if(formMode!='createNewError') {%>
+                <%= (classSkills.ID_Klasy_Umiejetnosci && skill.ID_Umiejetnosci.toString()==classSkills.Umiejetnosci_ID_Umiejetnosci.toString())? 'selected':''%>>
+            <%} else {%>
+                <%= (skill.ID_Umiejetnosci.toString()==classSkills.Umiejetnosci_ID_Umiejetnosci.toString())? 'selected':''%>>
+            <%}%>
+        </option>
+        <%}%>
+
+    </select>
+    <span id="errorskill" class="errors-text">
+        <%if(validationErrors.find(e=>e.path.includes('Umiejetnosci_ID_Umiejetnosci'))) { %>
+        <%=__(validationErrors.find(e=>e.path.includes('Umiejetnosci_ID_Umiejetnosci')).message)%>
+        <% } %>
+    </span>
+
+    <label for="maxlvl"><%= __('classSkill.fields.MaksWrt') %>: <span class="symbol-required">*</span></label>
+    <input type="number" name="Maksymaln_Wartosc" id="maxlvl" class="<%=validationErrors.find(e=>e.path.includes('Maksymaln_Wartosc'))?'error-input':''%>" required placeholder="5-100" value="<%=classSkills.Maksymaln_Wartosc%>"
+            <%=(formMode=='showDetails')?'disabled':'' %>/>
+    <span id="maxlvlerror" class="errors-text">
+        <%if(validationErrors.find(e=>e.path.includes('Maksymaln_Wartosc'))) { %>
+        <%=__(validationErrors.find(e=>e.path.includes('Maksymaln_Wartosc')).message)%>
+        <% } %>
+    </span>
+
+    <label for="minlvl"><%= __('classSkill.fields.BaseWrt') %>: <span class="symbol-required">*</span></label>
+    <input type="number" name="Bazowa_Wartosc" id="minlvl" class="<%=validationErrors.find(e=>e.path.includes('Bazowa_Wartosc'))?'error-input':''%>" required placeholder="0-100" value="<%=classSkills.Bazowa_Wartosc%>"
+            <%=(formMode=='showDetails')?'disabled':'' %>/>
+    <span id="minlvlerror"  class="errors-text">
+        <%if(validationErrors.find(e=>e.path.includes('Bazowa_Wartosc'))) { %>
+        <%=__(validationErrors.find(e=>e.path.includes('Bazowa_Wartosc')).message)%>
+        <% } %>
+    </span>
+
+
+
+
+    <div class="form-buttons">
+        <p id="errorSummary" class="errors-text"></p>
+        <%if (formMode != 'showDetails'){ %>
+        <input  class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+        <a  class="form-button-cancel" href="/classSkills"><%= __('form.actions.cancel') %></a>
+        <% }else {%>
+        <a href="/classSkills/edit/<%=classSkills.ID_Klasy_Umiejetnosci%>" class="form-button-submit"><%= __('list.actions.edit') %></a>
+            <a  class="form-button-cancel" href="/classSkills"><%= __('form.actions.return') %></a>
+    </div>
+    <% }%>
+
+
+</form>
+
+</main>
+<%- include('../../fragments/footer.ejs') %>
+
+
